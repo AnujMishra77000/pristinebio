@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pristine Biopharma - High-Grade Chemicals</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- HIGH-TECH DARK MODE COLOR SCHEME --- */
+        :root {
+            --color-primary: #1f2937; /* Dark Charcoal (used for cards) */
+            --color-accent: #34d399; /* Emerald Green for high visibility */
+            --color-secondary: #0f172a; /* Deep Slate Background */
+        }
+        
+        body {
+            /* Dark, modern, stable background */
+            background-color: var(--color-secondary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #f3f4f6; /* Light gray text for high contrast */
+        }
+
+        /* --- MARKET SEGMENTS STYLES (Glow effect on Dark Cards) --- */
+        .market-segments-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .market-segments-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .market-segments-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Card Base Style: Dark background, subtle lift */
+        .glowing-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            background-color: var(--color-primary); /* Darker than body for layering */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); 
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.4s ease-out;
+            cursor: pointer;
+            min-height: 250px;
+            border: 1px solid #374151; /* Dark border to define edges */
+        }
+
+        .glowing-card:hover {
+            transform: translateY(-8px);
+            /* Green glow on hover for innovation feel */
+            box-shadow: 0 15px 40px rgba(52, 211, 153, 0.3); 
+            border-color: var(--color-accent);
+        }
+
+        /* Card Content Style */
+        .segment-card-content {
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        
+        .segment-card-content h3 {
+            color: var(--color-accent); /* Vibrant accent color for titles */
+        }
+        
+        .segment-card-content p {
+            color: #d1d5db; /* Lighter gray body text */
+        }
+
+        /* --- SCROLL HIDE STYLE --- */
+        /* Selects all immediate children within the nav-content-wrapper for the fade effect */
+        .nav-content > * {
+            opacity: 1; /* Default visible state */
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .hide-on-scroll.nav-content > * {
+            opacity: 0;
+            pointer-events: none; /* Prevents interaction while hidden */
+        }
+        /* --- END SCROLL HIDE STYLE --- */
+        
+    </style>
+</head>
+
+<body>
+    <header class="fixed top-0 left-0 w-full z-50 h-24 bg-transparent">
+        <div class="max-w-6xl mx-auto h-full p-4">
+            <div id="nav-content-wrapper" class="flex justify-between items-center h-full nav-content"> 
+                <a href="home.html" class="flex items-center space-x-3">
+                    <img src="images/PB.png" alt="Logo" class="h-28 w-auto filter drop-shadow-lg -mt-2"> 
+                </a>
+                
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+
+                <nav class="hidden md:flex space-x-8 text-base tracking-wide font-semibold">
+                    <a href="index.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
+                    <a href="about.html" class="text-white hover:text-emerald-400 transition-colors duration-300">About</a>
+                    <a href="products.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Products</a>
+                    <a href="contact.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Contact</a>
+                </nav>
+            </div>
+            </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 shadow-xl">
+            <a href="index.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Home</a>
+            <a href="about.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">About</a>
+            <a href="products.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Products</a>
+            <a href="contact.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Contact</a>
+        </div>
+    </header>
+
+    <div class="h-24"></div> 
+
+    <section class="relative pt-24 pb-32 md:pt-32 md:pb-40 overflow-hidden min-h-[70vh] flex items-center justify-center">
+        
+        <video id="bg-video-player" autoplay muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+            <source src="images/hpg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="absolute top-0 left-0 w-full h-full bg-gray-900/80 z-10" style="box-shadow: inset 0 0 100px rgba(52, 211, 153, 0.1);"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full max-w-6xl mx-auto px-6 text-center">
+            
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold mb-6 text-white leading-tight" 
+                data-aos="fade-down">
+                Purity & Precision. 
+                <span class="text-emerald-400 block sm:inline-block">Delivered.</span>
+            </h1>
+        
+            <p class="text-xl sm:text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-10" 
+                data-aos="fade-up" 
+                data-aos-delay="200">
+                A global leader in high-grade Active Pharmaceutical Ingredients (APIs), Essential Oils, and certified Industrial Solvents, driving excellence in healthcare and manufacturing.
+            </p>
+
+            <a href="products.html" class="mt-4 bg-emerald-500 text-gray-900 px-10 py-4 rounded-full font-extrabold text-lg hover:bg-emerald-400 shadow-2xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
+                Explore Our Solutions
+            </a>
+            
+        </div>
+    </section>
+
+    <section class="py-20 md:py-28 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4 text-white" data-aos="fade-up">
+                Core Sectors of Focus
+            </h2>
+            <p class="text-lg text-center text-gray-400 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="150">
+                Our commitment to quality serves vital industries that rely on certified, consistent chemical supply.
+            </p>
+
+            <div class="market-segments-container">
+
+                <div class="glowing-card" data-aos="fade-up" data-aos-delay="100">
+                    <a href="pharma.html" class="segment-link">
+                        <div class="segment-card-content">
+                            <svg class="w-10 h-10 text-emerald-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c0 2.897 1.18 5.617 3.04 7.618A12.001 12.001 0 0012 21.056c2.897 0 5.617-1.18 7.618-3.04A12.001 12.001 0 0021.056 12a11.955 11.955 0 00-3.04-8.618z"></path></svg>
+                            <h3 class="text-2xl font-bold mb-2">Pharmaceutical</h3>
+                            <p>
+                                High-purity **Active Pharmaceutical Ingredients (APIs)** and building blocks meeting cGMP standards.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="glowing-card" data-aos="fade-up" data-aos-delay="200">
+                    <a href="lab.html" class="segment-link">
+                        <div class="segment-card-content">
+                            <svg class="w-10 h-10 text-emerald-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-7-7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <h3 class="text-2xl font-bold mb-2">Lab Reagents & Solvents</h3>
+                            <p>
+                                Certified reagents and powerful solvents for manufacturing, synthesis, and high-tech industrial use.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                    <div class="glowing-card" data-aos="fade-up" data-aos-delay="300">
+                        <a href="cosmetic.html" class="segment-link">
+                            <div class="segment-card-content">
+                                <svg class="w-10 h-10 text-emerald-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16h.01"></path></svg>
+                                <h3 class="text-2xl font-bold mb-2">Cosmetics & Neutraceuticals</h3>
+                                <p>
+                                    Essential oils, chemical bases, and functional ingredients for premium skin care and health supplements.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-800 py-20 md:py-28 px-4 text-center">
+        <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 text-white">
+                Partner with the Future of Chemical Sourcing
+            </h2>
+            <p class="text-lg sm:text-xl text-gray-300 mb-8">
+                Our rigorous quality assurance process and streamlined logistics ensure you receive the right product, on time, every time.
+            </p>
+            <a href="contact.html" class="bg-emerald-500 text-gray-900 px-10 py-4 rounded-full font-extrabold text-lg hover:bg-emerald-400 shadow-xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105">
+                Request a Quote Today
+            </a>
+        </div>
+    </section>
+
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-emerald-400">Pristine Biopharma</h4>
+                <p class="text-sm text-gray-400">Trusted supplier of certified chemical products for global industries.</p>
+            </div>
+            
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="products.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Product Catalog</a></li>
+                    <li><a href="about.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Our Quality</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Support</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                <p class="text-sm text-gray-400">
+                    123 Chem Street, Industrial Zone, New York, USA<br>
+                    Email: sales@pristinebiopharma.com<br>
+                    Phone: (+91) 8691953900
+                </p>
+            </div>
+
+            <div class="md:col-span-1">
+                <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.013 4.85.074 3.024.148 4.073 1.198 4.22 4.22.061 1.266.074 1.646.074 4.85s-.013 3.584-.074 4.85c-.148 3.024-1.198 4.073-4.22 4.22-.061.012-.44.074-.85.074H8.15c-1.266 0-1.646-.013-4.85-.074-3.024-.148-4.073-1.198-4.22-4.22-.061-1.266-.074-1.646-.074-4.85s.013-3.584.074-4.85c.148-3.024 1.198-4.073 4.22-4.22.061-.012.44-.074.85-.074h7.7c.41 0 .79.062 1.2.074zM12 5.084c-3.87 0-7.005 3.135-7.005 7.004s3.135 7.004 7.005 7.004c3.87 0 7.005-3.135 7.005-7.004S15.87 5.084 12 5.084zM12 17.5c-3.048 0-5.5-2.452-5.5-5.5s2.452-5.5 5.5-5.5 5.5 2.452 5.5 5.5-2.452 5.5-5.5 5.5zM17.5 7.375c-.387 0-.704.317-.704.704s.317.704.704.704c.387 0 .704-.317.704-.704z"></path></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6.727c-.455.201-.94.336-1.446.401.524-.314.927-.812 1.116-1.411-.49.294-1.034.509-1.61.623-.464-.495-1.127-.805-1.85-.805-1.404 0-2.544 1.139-2.544 2.544 0 .199.022.392.064.577-2.113-.106-3.985-1.116-5.32-2.659-.22.378-.346.82-.346 1.288 0 .885.452 1.666 1.138 2.126-.421-.013-.815-.129-1.157-.319v.033c0 1.232.876 2.259 2.037 2.493-.213.058-.438.089-.668.089-.164 0-.323-.016-.479-.047.323 1.01 1.261 1.748 2.371 1.768-1.026.804-2.32 1.284-3.729 1.284-.242 0-.48-.014-.716-.042 1.328.85 2.905 1.35 4.6 1.35 5.52 0 8.535-4.576 8.535-8.535 0-.13-.003-.26-.008-.39.588-.424 1.097-.948 1.503-1.543z"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center mt-8 border-t border-gray-700 pt-6">
+            <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Hamburger Menu Logic ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // --- Animate on Scroll (AOS) Initialization ---
+            AOS.init({
+                once: true,
+                duration: 800,
+                delay: 100,
+            });
+
+            // --- Segment Card Interaction: Hover triggers the green glow border/shadow defined in CSS ---
+            const segmentCards = document.querySelectorAll('.glowing-card');
+
+            segmentCards.forEach(card => {
+                // We keep the logic simple as the primary effects are handled purely by CSS on hover
+            });
+
+            // --- Video Cycling Logic (NEW IMPLEMENTATION) ---
+            const videoPlayer = document.getElementById('bg-video-player');
+            const videoSources = [
+                "images/hpg.mp4",
+                "images/gen.mp4",
+                "images/hph.mp4",
+                "images/four.mp4"
+            ];
+            let currentVideoIndex = 0;
+
+            if (videoPlayer) {
+                // Function to load and play the next video in the playlist
+                function playNextVideo() {
+                    // Move to the next index, wrapping around to 0
+                    currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+                    const nextSrc = videoSources[currentVideoIndex];
+                    
+                    // Update the source element's src
+                    let sourceElement = videoPlayer.querySelector('source');
+                    if (sourceElement) {
+                        sourceElement.src = nextSrc;
+                    }
+                    
+                    // Reload the video element to pick up the new source
+                    videoPlayer.load();
+                    videoPlayer.play().catch(error => {
+                        console.warn("Video autoplay blocked or failed (browser security):", error);
+                        // The video will still be loaded and visible, but may require a user interaction to start if blocked.
+                    });
+                }
+                
+                // Attach the event listener to transition to the next video when the current one finishes.
+                videoPlayer.addEventListener('ended', playNextVideo);
+
+                // Initial load: Because we removed 'loop' from HTML, if the browser successfully autoplays, 
+                // the 'ended' listener will handle the cycle from here on.
+            }
+            // --- END Video Cycling Logic ---
+
+            // --- Scroll Direction Hide/Show Navbar Content Logic ---
+            let lastScrollTop = 0; // Tracks the previous scroll position
+            const navWrapper = document.getElementById('nav-content-wrapper');
+            const HIDE_CLASS = 'hide-on-scroll'; // Class added to hide content
+            const SCROLL_THRESHOLD = 100; // Distance scrolled from top before behavior activates
+
+            if (navWrapper) {
+                window.addEventListener('scroll', function() {
+                    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                    // Only activate the hide/show behavior if scrolled past the initial threshold
+                    if (currentScroll > SCROLL_THRESHOLD) {
+                        // Scrolling DOWN
+                        if (currentScroll > lastScrollTop) {
+                            // Scrolling down, navbar content should be HIDDEN
+                            navWrapper.classList.add(HIDE_CLASS);
+                        } else {
+                            // Scrolling UP
+                            // Scrolling up, navbar content should be VISIBLE
+                            navWrapper.classList.remove(HIDE_CLASS);
+                        }
+                    } else {
+                        // Near the top of the page (within SCROLL_THRESHOLD), always show the content
+                        navWrapper.classList.remove(HIDE_CLASS);
+                    }
+                    
+                    // Update lastScrollTop for the next scroll event
+                    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Ensure it's never negative
+                }, false);
+            }
+            // --- END SCROLL HIDE LOGIC ---
+        });
+    </script>
+</body>
+</html>
+
