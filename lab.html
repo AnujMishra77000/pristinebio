@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pristine Biopharma - Pharmaceutical Sector</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- HIGH-TECH DARK MODE COLOR SCHEME --- */
+        :root {
+            --color-primary: #1f2937; /* Dark Charcoal (Card Background) */
+            --color-accent: #34d399; /* Emerald Green */
+            --color-secondary: #0f172a; /* Deep Slate Background */
+        }
+        
+        body {
+            background-color: var(--color-secondary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #f3f4f6; 
+        }
+        
+        /* Card Base Style: Dark background, subtle lift */
+        .pharma-card {
+            border-radius: 1rem;
+            background-color: var(--color-primary); 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+            border: 1px solid #374151;
+            padding: 2rem;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            height: 100%; /* Ensure card fills container */
+        }
+
+        .pharma-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.2);
+        }
+
+        /* Utility classes using CSS variables for consistency */
+        .text-accent {
+            color: var(--color-accent);
+        }
+
+        /* --- CUBE FLIP CAROUSEL CUSTOM STYLES --- */
+        
+        /* 1. Sets the perspective for 3D depth */
+        .flip-container {
+            width: 100%;
+            height: 300px; /* Fixed height for the flip area */
+            perspective: 1000px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* 2. The Card that holds the faces and rotates */
+        .flip-card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 1.5s cubic-bezier(0.8, 0, 0.2, 1); /* Slower, smoother transition */
+        }
+
+        /* 3. The individual faces (cards) of the cube */
+        .flip-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Important: Hides the back of the element when flipped */
+            display: flex; /* Centers the content */
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+        
+        /* Initial positioning of the faces (the 'cube' setup) */
+        .face-1 { transform: rotateY( 0deg) translateZ(0); }
+        .face-2 { transform: rotateY( 90deg) translateZ(0); }
+        .face-3 { transform: rotateY( 180deg) translateZ(0); }
+        
+        /* This is only for a single-card view on mobile/desktop, showing one 'face' at a time. */
+        
+    </style>
+</head>
+
+<body>
+
+    <header class="fixed top-0 left-0 w-full z-50 h-24 bg-gray-900/90 shadow-lg backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto h-full p-4 flex justify-between items-center">
+             <a href="home.html" class="flex items-center space-x-3">
+                <img src="images/PB.png" alt="Logo" class="h-28 w-auto filter drop-shadow-lg -mt-2"> 
+            </a>
+            <nav class="space-x-8 text-base tracking-wide font-semibold">
+                <a href="home.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
+                <a href="#" class="text-emerald-400">Lab & Solvent</a>
+                <a href="products.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Products</a>
+            </nav>
+        </div>
+    </header>
+    <div class="h-24"></div> 
+    
+    <section class="relative py-24 md:py-32 text-center bg-gray-900/90 border-b border-emerald-400/20">
+        <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
+            <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 text-white">
+                <span class="text-accent">Lab Reagents and Industrial</span> Excellence
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                Dedicated to the supply of **Active Pharmaceutical Ingredients (APIs)** and intermediates that define quality, efficacy, and trust in global drug manufacturing.
+            </p>
+        </div>
+    </section>
+
+   
+    <section class="bg-gray-900 py-20 md:py-28 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-extrabold text-center mb-16 text-white" data-aos="fade-up">
+                Our Core Lab Research and Development Experties
+            </h2>
+
+            <div class="space-y-6">
+                <details class="group rounded-xl border border-emerald-400/20 shadow-xl overflow-hidden bg-gray-900/70" data-aos="fade-up">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none bg-gray-900/50 hover:bg-gray-900/70 transition-colors duration-300">
+                        <h3 class="text-2xl font-extrabold text-emerald-400 flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16z"></path></svg>
+                             Lab Reagents
+                        </h3>
+                        <span class="text-white transform group-open:rotate-180 transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    
+                    <div class="px-6 pb-6 pt-4 bg-gray-900/50 text-gray-300 border-t border-emerald-400/20">
+                        <p class="mb-4 text-gray-300">
+                            We specialize in the synthesis and supply of highly **stable and photostable compounds** required for pharmaceutical formulations, guaranteeing extended shelf life and consistency under various storage conditions.
+                        </p>
+                        <h4 class="text-xl font-bold mb-2 text-white border-b border-gray-700 pb-1">Key Compounds:</h4>
+                        
+                        <ul class="list-none space-y-3 pl-0">
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">Lab Analytical</span>
+                                <p class="text-white text-sm mt-1">
+                                    A highly stable isotopic analog used in bioequivalence studies, ensuring precise measurements of the active ingredient Dipyridamole (vasodilator).
+                                </p>
+                            </li>
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">HPCL Columns</span>
+                                <p class="text-white text-sm mt-1">
+                                    The Drug Substance (DS) form of Dienogest, critical for hormonal therapies. Supplied with verified purity profiles and high crystalline consistency.
+                                </p>
+                            </li>
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">Merc Product List</span>
+                                <p class="text-white text-sm mt-1">
+                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
+                                </p>
+                            </li>
+                    
+                        </ul>
+                    </div>
+                </details>
+                <details class="group rounded-xl border border-emerald-400/20 shadow-xl overflow-hidden bg-gray-900/70" data-aos="fade-up">
+                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none bg-gray-900/50 hover:bg-gray-900/70 transition-colors duration-300">
+                        <h3 class="text-2xl font-extrabold text-emerald-400 flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16z"></path></svg>
+                             Industrial Solvent
+                        </h3>
+                        <span class="text-white transform group-open:rotate-180 transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </summary>
+                    
+                    <div class="px-6 pb-6 pt-4 bg-gray-900/50 text-gray-300 border-t border-emerald-400/20">
+                        <p class="mb-4 text-gray-300">
+                            We specialize in the synthesis and supply of highly **stable and photostable compounds** required for pharmaceutical formulations, guaranteeing extended shelf life and consistency under various storage conditions.
+                        </p>
+                        <h4 class="text-xl font-bold mb-2 text-white border-b border-gray-700 pb-1">Key Compounds:</h4>
+                        
+                        <ul class="list-none space-y-3 pl-0">
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">Methanol</span>
+                                <p class="text-white text-sm mt-1">
+                                    A highly stable isotopic analog used in bioequivalence studies, ensuring precise measurements of the active ingredient Dipyridamole (vasodilator).
+                                </p>
+                            </li>
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">N-Hexane</span>
+                                <p class="text-white text-sm mt-1">
+                                    The Drug Substance (DS) form of Dienogest, critical for hormonal therapies. Supplied with verified purity profiles and high crystalline consistency.
+                                </p>
+                            </li>
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">M D C</span>
+                                <p class="text-white text-sm mt-1">
+                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
+                                </p>
+                            </li>
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">Ethyl</span>
+                                <p class="text-white text-sm mt-1">
+                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
+                                </p>
+                            </li>
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">Acetate</span>
+                                <p class="text-white text-sm mt-1">
+                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
+                                </p>
+                            </li>
+                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
+                                <span class="text-accent font-bold">Acetonitrile</span>
+                                <p class="text-white text-sm mt-1">
+                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+                <a href="images/Merckpp.pdf" target="_blank" class="group rounded-xl border border-emerald-400/20 shadow-xl overflow-hidden bg-gray-900/70 block p-6 cursor-pointer hover:bg-gray-900/70 transition-colors duration-300" data-aos="fade-up">
+                    <div class="flex justify-between items-center list-none">
+                        <h3 class="text-2xl font-extrabold text-emerald-400 flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16z"></path></svg>
+                            Merc Product List
+                        </h3>
+                        <span class="text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </span>
+                    </div>
+                </a>
+                        
+                <div class="text-center pt-8" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="products.html" class="bg-emerald-500 text-gray-900 px-8 py-3 rounded-full font-extrabold text-lg hover:bg-emerald-400 shadow-2xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105">
+                        View Complete Product Catalog
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-28 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-extrabold text-center mb-12 text-white" data-aos="fade-up">
+                Uncompromising Quality Assurance 🧪
+            </h2>
+            
+            <div class="flip-container" data-aos="zoom-in" data-aos-delay="100">
+                <div id="flip-card" class="flip-card">
+                    
+                    <div class="flip-face face-1 p-4">
+                        <div class="pharma-card space-y-3">
+                            <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c0 2.897 1.18 5.617 3.04 7.618A12.001 12.001 0 0012 21.056c2.897 0 5.617-1.18 7.618-3.04A12.001 12.001 0 0021.056 12a11.955 11.955 0 00-3.04-8.618z"></path></svg>
+                            <h3 class="text-2xl font-bold text-white">cGMP Standards</h3>
+                            <p class="text-gray-400">
+                                Every ingredient is produced under strict **Current Good Manufacturing Practices (cGMP)** protocols, ensuring safety, quality, and purity from synthesis to delivery.
+                            </p>
+                            <span class="text-xs text-emerald-400/50 block pt-4">Click/Tap to pause rotation</span>
+                        </div>
+                    </div>
+
+                    <div class="flip-face face-2 p-4">
+                        <div class="pharma-card space-y-3">
+                            <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0013.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2h3zm7-11H9m5 4H9m5 4H9"></path></svg>
+                            <h3 class="text-2xl font-bold text-white">Advanced Analysis</h3>
+                            <p class="text-gray-400">
+                                Our materials undergo rigorous testing, including **HPLC and mass spectrometry**, to guarantee >99.9% purity and verifiable molecular consistency.
+                            </p>
+                            <span class="text-xs text-emerald-400/50 block pt-4">Click/Tap to pause rotation</span>
+                        </div>
+                    </div>
+
+                    <div class="flip-face face-3 p-4">
+                        <div class="pharma-card space-y-3">
+                            <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10h16V7M4 7h16M4 7l2.5 5 2.5-5 2.5 5 2.5-5 2.5 5 2.5-5M4 17h16"></path></svg>
+                            <h3 class="text-2xl font-bold text-white">Full Traceability</h3>
+                            <p class="text-gray-400">
+                                Complete **batch traceability** ensures transparency and accountability, providing the critical documentation required for regulatory audits and submissions.
+                            </p>
+                            <span class="text-xs text-emerald-400/50 block pt-4">Click/Tap to pause rotation</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-6 space-x-2">
+                <button data-index="0" class="dot w-3 h-3 bg-emerald-400 rounded-full transition-colors"></button>
+                <button data-index="1" class="dot w-3 h-3 bg-gray-700 hover:bg-gray-500 rounded-full transition-colors"></button>
+                <button data-index="2" class="dot w-3 h-3 bg-gray-700 hover:bg-gray-500 rounded-full transition-colors"></button>
+            </div>
+            
+        </div>
+    </section>
+    
+    <footer class="bg-gray-900 text-white py-10 border-t border-gray-700">
+        <div class="text-center max-w-6xl mx-auto px-6">
+            <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                once: true,
+                duration: 800,
+                delay: 100,
+            });
+            
+            // --- CUBE FLIP CAROUSEL LOGIC ---
+            const flipCard = document.getElementById('flip-card');
+            const dots = document.querySelectorAll('.dot');
+            const totalFaces = 3;
+            let currentFace = 0;
+            const flipDuration = 5000; // 5 seconds interval
+            let autoFlipInterval;
+
+            // Defines the rotation angle for each face
+            const rotations = [
+                'rotateY(0deg)',
+                'rotateY(-90deg)',
+                'rotateY(-180deg)'
+            ];
+            
+            function updateDots() {
+                dots.forEach(dot => {
+                    dot.classList.remove('bg-emerald-400');
+                    dot.classList.add('bg-gray-700', 'hover:bg-gray-500');
+                });
+                dots[currentFace].classList.add('bg-emerald-400');
+                dots[currentFace].classList.remove('bg-gray-700', 'hover:bg-gray-500');
+            }
+
+            function flipToFace(index) {
+                currentFace = index % totalFaces;
+                if (currentFace < 0) {
+                    currentFace = totalFaces - 1;
+                }
+                flipCard.style.transform = rotations[currentFace];
+                updateDots();
+            }
+
+            function startAutoFlip() {
+                clearInterval(autoFlipInterval); // Clear any existing interval
+                autoFlipInterval = setInterval(() => {
+                    flipToFace(currentFace + 1);
+                }, flipDuration);
+            }
+
+            function handleManualFlip() {
+                // Pause auto-flip on manual interaction
+                clearInterval(autoFlipInterval);
+            }
+            
+            // Add click listeners to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    handleManualFlip();
+                    flipToFace(index);
+                });
+            });
+
+            // Add click listener to the card itself to pause/unpause
+            flipCard.addEventListener('click', () => {
+                if (autoFlipInterval) {
+                    clearInterval(autoFlipInterval);
+                } else {
+                    startAutoFlip();
+                }
+            });
+
+            // Initialize and start rotation
+            startAutoFlip();
+            // --- END CUBE FLIP CAROUSEL LOGIC ---
+
+        });
+    </script>
+</body>
+</html>
+
+
+

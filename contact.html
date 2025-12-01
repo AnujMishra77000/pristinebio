@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Pristine Biopharma</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* --- HIGH-TECH DARK MODE COLOR SCHEME (From home.html) --- */
+        :root {
+            --color-primary: #1f2937; /* Dark Charcoal (used for cards/forms) */
+            --color-accent: #34d399; /* Emerald Green for high visibility */
+            --color-secondary: #0f172a; /* Deep Slate Background */
+        }
+        
+        body {
+            background-color: var(--color-secondary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #f3f4f6; /* Light gray text for high contrast */
+        }
+
+        /* --- GLOWING CARD STYLES (From contact.html) --- */
+        .glowing-card {
+            background-color: var(--color-primary); 
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.2); 
+            border: 1px solid #374151; 
+            transition: all 0.3s;
+            border-radius: 0.5rem; 
+        }
+
+        .glowing-card:hover {
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.4); 
+            border-color: var(--color-accent);
+        }
+
+        /* Custom styling for the WhatsApp button */
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 1rem 2rem; /* Increased padding */
+            font-size: 1.25rem; /* Larger text */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); /* More prominent shadow */
+            border-radius: 9999px; /* Fully rounded */
+            display: inline-flex; /* Align icon and text */
+            align-items: center;
+            gap: 0.75rem; /* Space between icon and text */
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.08); /* More noticeable scale */
+            box-shadow: 0 6px 20px rgba(18, 140, 126, 0.6); /* Deeper shadow on hover */
+        }
+
+        /* Keyframes for pulse animation */
+        @keyframes pulse-whatsapp {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+        }
+
+        /* Apply pulse animation */
+        .whatsapp-btn.animate-pulse {
+            animation: pulse-whatsapp 2s infinite ease-in-out;
+        }
+
+        /* Simplified Header Content Control for Mobile/Menu only */
+        .nav-content > * {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-24 bg-[var(--color-secondary)] shadow-xl">
+        <div class="max-w-6xl mx-auto h-full p-4">
+            <div id="nav-content-wrapper" class="flex justify-between items-center h-full"> 
+                <a href="index.html" class="flex items-center space-x-3">
+                    <img src="images/PB.png" alt="Logo" class="h-28 w-auto filter drop-shadow-lg -mt-2"> 
+                </a>
+                
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+
+                <nav class="hidden md:flex space-x-8 text-base tracking-wide font-semibold">
+                    <a href="home.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
+                    <a href="about.html" class="text-white hover:text-emerald-400 transition-colors duration-300">About</a>
+                    <a href="products.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Products</a>
+                    <a href="contact.html" class="text-emerald-400 border-b-2 border-emerald-400">Contact</a>
+                </nav>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 shadow-xl">
+            <a href="home.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Home</a>
+            <a href="about.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">About</a>
+            <a href="products.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Products</a>
+            <a href="contact.html" class="block py-3 px-4 text-base text-emerald-400 hover:bg-emerald-500/10">Contact</a>
+        </div>
+    </header>
+
+    <div class="h-24"></div> 
+
+    <main class="max-w-5xl mx-auto p-8 py-20">
+        <h2 class="text-4xl font-extrabold text-center mb-12 text-white" data-aos="fade-down">
+            <span class="text-emerald-400">Get in Touch</span> with Our Team
+        </h2>
+
+        <div class="grid md:grid-cols-1 gap-12">
+            
+            <div class="space-y-6" data-aos="fade-right" data-aos-delay="100">
+                <h3 class="text-2xl font-bold mb-4 text-emerald-400">Contact Information</h3>
+                
+                <p class="mb-2 text-lg">
+                    <strong class="text-gray-300 block mb-1">Phone:</strong> +91-8691953900
+                </p>
+                <p class="mb-2 text-lg">
+                    <strong class="text-gray-300 block mb-1">Email:</strong> 
+                    <a href="mailto:sales@pristinebiopharma.com" class="text-emerald-400 hover:underline">sales@pristinebiopharma.com</a>
+                    <span class="text-gray-300 block mt-1"></span>
+                    <a href="mailto:purchase@pristinebiopharma.com" class="text-emerald-400 hover:underline">purchase@pristinebiopharma.com</a>
+                    <span class="text-gray-300 block mt-1"></span>
+                    <a href="mailto:purchase@pristinebiopharma.com" class="text-emerald-400 hover:underline">info@pristinebiopharma.com</a>
+                </p>
+                <p class="mb-2 text-lg">
+                    <strong class="text-gray-300 block mb-1">Address:</strong>  
+                    602/C SIDDHANT REGENCY, SIDDHANT PARK,  
+                    SABE ROAD DIVA - 60012
+                </p>
+                <p class="mb-2 text-lg">
+                    <strong class="text-gray-300 block mb-1">Working Hours:</strong> Mon - Sat, 9:00 AM to 6:00 PM
+                </p> 
+
+                <a href="https://wa.me/7700010890" target="_blank" 
+                   class="whatsapp-btn inline-block mt-8 font-bold animate-pulse" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fab fa-whatsapp text-2xl"></i> Chat on WhatsApp
+                </a>
+                </div>
+
+            <div class="md:col-span-1 mt-8" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-2xl font-bold mb-4 text-emerald-400">Our Location</h3>
+                <div class="w-full h-96 rounded-xl border-2 border-emerald-500/40 overflow-hidden shadow-2xl shadow-emerald-500/10">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=602/C%20SIDDHANT%20REGENCY,%20SIDDHANT%20PARK,%20SABE%20ROAD%20DIVA%20-%2060012&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-2">
+                    Note: The map shows the approximate location for 602/C Siddhant Regency.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <div data-aos="fade-up" data-aos-delay="100">
+                <h4 class="text-xl font-bold mb-4 text-emerald-400">Pristine Biopharma</h4>
+                <p class="text-sm text-gray-400">Trusted supplier of certified chemical products for global industries.</p>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="products.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Product Catalog</a></li>
+                    <li><a href="about.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Our Quality</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Support</a></li>
+                </ul>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="300">
+                <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                <p class="text-sm text-gray-400">
+                    602/C Siddhant Regency, Siddhant park, <br>
+                    Email: info@pristinebiopharma.com<br>
+                    Phone: (+91) 8691953900
+                </p>
+            </div>
+
+            <div class="md:col-span-1" data-aos="fade-up" data-aos-delay="400">
+                <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.013 4.85.074 3.024.148 4.073 1.198 4.22 4.22.061 1.266.074 1.646.074 4.85s-.013 3.584-.074 4.85c-.148 3.024-1.198 4.073-4.22 4.22-.061.012-.44.074-.85.074H8.15c-1.266 0-1.646-.013-4.85-.074-3.024-.148-4.073-1.198-4.22-4.22-.061-1.266-.074-1.646-.074-4.85s.013-3.584.074-4.85c.148-3.024 1.198-4.073 4.22-4.22.061-.012.44-.074.85-.074h7.7c.41 0 .79.062 1.2.074zM12 5.084c-3.87 0-7.005 3.135-7.005 7.004s3.135 7.004 7.005 7.004c3.87 0 7.005-3.135 7.005-7.004S15.87 5.084 12 5.084zM12 17.5c-3.048 0-5.5-2.452-5.5-5.5s2.452-5.5 5.5-5.5 5.5 2.452 5.5 5.5-2.452 5.5-5.5 5.5zM17.5 7.375c-.387 0-.704.317-.704.704s.317.704.704.704c.387 0 .704-.317.704-.704z"></path></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="Twitter">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6.727c-.455.201-.94.336-1.446.401.524-.314.927-.812 1.116-1.411-.49.294-1.034.509-1.61.623-.464-.495-1.127-.805-1.85-.805-1.404 0-2.544 1.139-2.544 2.544 0 .199.022.392.064.577-2.113-.106-3.985-1.116-5.32-2.659-.22.378-.346.82-.346 1.288 0 .885.452 1.666 1.138 2.126-.421-.013-.815-.129-1.157-.319v.033c0 1.232.876 2.259 2.037 2.493-.213.058-.438.089-.668.089-.164 0-.323-.016-.479-.047.323 1.01 1.261 1.748 2.371 1.768-1.026.804-2.32 1.284-3.729 1.284-.242 0-.48-.014-.716-.042 1.328.85 2.905 1.35 4.6 1.35 5.52 0 8.535-4.576 8.535-8.535 0-.13-.003-.26-.008-.39.588-.424 1.097-.948 1.503-1.543z"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center mt-8 border-t border-gray-700 pt-6">
+            <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Animate on Scroll (AOS) Initialization ---
+            AOS.init({
+                once: true,
+                duration: 800,
+                delay: 100,
+            });
+
+            // --- Mobile Menu Logic ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
