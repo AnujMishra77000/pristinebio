@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Contact | Pristine Biopharma</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* --- HIGH-TECH DARK MODE COLOR SCHEME (From home.html) --- */
+        /* --- OPTIMIZED DARK MODE COLOR SCHEME --- */
         :root {
-            --color-primary: #1f2937; /* Dark Charcoal (used for cards/forms) */
-            --color-accent: #34d399; /* Emerald Green for high visibility */
-            --color-secondary: #0f172a; /* Deep Slate Background */
+            --color-primary: #1f2937;
+            --color-accent: #34d399;
+            --color-secondary: #0f172a;
         }
         
         body {
@@ -23,98 +23,431 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            color: #f3f4f6; /* Light gray text for high contrast */
+            color: #f3f4f6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
-        /* --- GLOWING CARD STYLES (From contact.html) --- */
-        .glowing-card {
-            background-color: var(--color-primary); 
-            box-shadow: 0 0 10px rgba(52, 211, 153, 0.2); 
-            border: 1px solid #374151; 
-            transition: all 0.3s;
-            border-radius: 0.5rem; 
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
 
-        .glowing-card:hover {
-            box-shadow: 0 0 20px rgba(52, 211, 153, 0.4); 
-            border-color: var(--color-accent);
+        /* Touch-friendly buttons */
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
-        /* --- CUSTOM STYLING FOR PREMIUM WHATSAPP BUTTON --- */
+        /* SHINY WHITE BACKGROUND FOR GET IN TOUCH CARD */
+        .shiny-white-card {
+            background: linear-gradient(
+                145deg, 
+                #ffffff 0%, 
+                #f8fafc 20%, 
+                #ffffff 40%,
+                #f8fafc 60%,
+                #ffffff 80%,
+                #f8fafc 100%
+            );
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                0 0 30px rgba(52, 211, 153, 0.1),
+                inset 0 0 40px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Metallic shine effect */
+        .shiny-white-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg, 
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(30deg);
+            animation: shine 8s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+        }
+
+        /* Inner glow effect */
+        .shiny-white-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            box-shadow: inset 0 0 60px rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+
+        .shiny-white-card:hover {
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.12),
+                0 0 0 2px rgba(52, 211, 153, 0.3),
+                0 0 50px rgba(52, 211, 153, 0.2),
+                inset 0 0 60px rgba(255, 255, 255, 0.6);
+            border-color: rgba(52, 211, 153, 0.4);
+            transform: translateY(-8px);
+        }
+
+        /* White card text styling */
+        .shiny-white-card h3 {
+            color: #0f172a !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .shiny-white-card .text-gray-300 {
+            color: #4b5563 !important;
+        }
+
+        .shiny-white-card .text-white {
+            color: #1f2937 !important;
+        }
+
+        .shiny-white-card .text-gray-400 {
+            color: #6b7280 !important;
+        }
+
+        .shiny-white-card a.text-white:hover,
+        .shiny-white-card a.text-gray-400:hover {
+            color: var(--color-accent) !important;
+        }
+
+        /* Premium WhatsApp Button with White Theme */
         .whatsapp-btn {
-            /* Background with a subtle gradient */
             background: linear-gradient(135deg, #25D366 0%, #1DA851 100%);
             color: white;
-            padding: 1rem 2.2rem; /* Slightly more horizontal padding */
-            font-size: 1.15rem; /* Adjusted text size for balance */
-            font-weight: 700; /* Bold text */
-            transition: all 0.3s ease; /* Smoother transitions for all properties */
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); /* Deeper initial shadow */
-            border-radius: 9999px; /* Fully rounded */
+            padding: 1rem 2.2rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            border-radius: 9999px;
             display: inline-flex;
             align-items: center;
-            gap: 0.85rem; /* Slightly more space between icon and text */
-            text-decoration: none; /* Ensure no underline */
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle light border */
+            justify-content: center;
+            gap: 0.85rem;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 320px;
         }
+
         .whatsapp-btn:hover {
-            background: linear-gradient(135deg, #1DA851 0%, #0F7A3E 100%); /* Darker gradient on hover */
-            transform: translateY(-2px) scale(1.05); /* Lift and scale slightly */
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6); /* More prominent shadow on hover */
-            border-color: rgba(255, 255, 255, 0.4); /* Border brightens on hover */
+            background: linear-gradient(135deg, #1DA851 0%, #0F7A3E 100%);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
         }
-        /* Icon specific styling */
+
         .whatsapp-btn .fab {
-            font-size: 1.6rem; /* Larger Font Awesome icon */
-            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2)); /* Slight shadow on icon */
+            font-size: 1.6rem;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
         }
 
-        /* Keyframes for a more subtle pulse animation */
-        @keyframes pulse-whatsapp {
-            0% { transform: scale(1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
-            50% { transform: scale(1.01); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.55); }
-            100% { transform: scale(1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+        /* Pulse animation for attention */
+        @keyframes subtle-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
-        /* Apply pulse animation only to elements with the class */
-        .whatsapp-btn.animate-pulse {
-            animation: pulse-whatsapp 2s infinite ease-in-out;
+        .whatsapp-btn {
+            animation: subtle-pulse 3s ease-in-out infinite;
         }
 
-
-        /* Simplified Header Content Control for Mobile/Menu only */
-        .nav-content > * {
-            opacity: 1;
+        /* Enhanced Map Container */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 1rem;
+            border: 2px solid rgba(52, 211, 153, 0.3);
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        /* --- SCROLL HIDE/HEADER STYLE (From home.html) --- */
-        .nav-content > * {
-            opacity: 1;
-            transition: opacity 0.3s ease-in-out;
+        .map-container:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 40px rgba(52, 211, 153, 0.15);
         }
 
-        .hide-on-scroll.nav-content > * {
-            opacity: 0;
-            pointer-events: none;
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--color-accent), 
+                #10b981, 
+                var(--color-accent));
+            z-index: 10;
+        }
+
+        /* Enhanced Contact Icons */
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.05));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .contact-icon i {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(16, 185, 129, 0.1));
+            border-color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+
+        .contact-item:hover .contact-icon i {
+            transform: scale(1.1);
+        }
+
+        /* Email badge styling */
+        .email-badge {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            border-radius: 8px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #10b981;
+            display: inline-block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Enhanced Section Title */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), #10b981);
+            border-radius: 2px;
+        }
+
+        /* Responsive optimizations */
+        @media (max-width: 768px) {
+            .shiny-white-card {
+                padding: 1.5rem !important;
+            }
+
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .contact-icon i {
+                font-size: 1.25rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+
+            .whatsapp-btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .shiny-white-card {
+                padding: 1.25rem !important;
+            }
+
+            .contact-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .contact-icon i {
+                font-size: 1.125rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+
+            .whatsapp-btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9375rem;
+            }
+        }
+
+        /* Prevent horizontal scroll on mobile */
+        @media (max-width: 640px) {
+            body {
+                overflow-x: hidden;
+            }
+            
+            main {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        /* Loading optimization for map */
+        .map-loading {
+            background: linear-gradient(135deg, #f8fafc, #e5e7eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .shiny-white-card {
+                background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .whatsapp-btn {
+                display: none !important;
+            }
+            
+            .map-container {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .whatsapp-btn {
+                animation: none !important;
+            }
+            
+            .shiny-white-card::before {
+                animation: none !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .shiny-white-card {
+                border: 3px solid var(--color-accent);
+            }
+            
+            .contact-icon {
+                border: 2px solid var(--color-accent);
+            }
+        }
+
+        /* Device-specific optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .shiny-white-card:hover {
+                transform: none;
+            }
+            
+            .contact-item:active .contact-icon {
+                background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(16, 185, 129, 0.1));
+                border-color: var(--color-accent);
+            }
+            
+            .whatsapp-btn:active {
+                transform: scale(0.98);
+            }
+        }
+
+        /* Landscape orientation support */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .map-container {
+                height: 250px;
+            }
+            
+            .shiny-white-card {
+                padding: 1rem !important;
+            }
+        }
+
+        /* Very large screens */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1600px !important;
+            }
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion) {
+            .shiny-white-card::before,
+            .shiny-white-card:hover::before,
+            .contact-item:hover .contact-icon,
+            .contact-item:hover .contact-icon i,
+            .whatsapp-btn:hover,
+            .whatsapp-btn {
+                transition: none !important;
+                animation: none !important;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-24 bg-transparent">
-        <div class="max-w-6xl mx-auto h-full p-4">
-            <div id="nav-content-wrapper" class="flex justify-between items-center h-full nav-content"> 
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-24 bg-gray-900/95 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto h-full px-4 md:px-8">
+            <div class="flex justify-between items-center h-full">
                 <a href="index.html" class="flex items-center space-x-3">
-                    <img src="images/PB.png" alt="Logo" class="h-28 w-auto filter drop-shadow-lg -mt-2"> 
+                    <img src="images/PB.png" alt="Pristine Biopharma Logo" class="h-28 w-auto transition-transform hover:scale-105">
                 </a>
                 
-                <div class="md:hidden">
-                    <button id="menu-btn" class="text-white focus:outline-none">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
+                <button id="menu-btn" class="md:hidden text-white p-2" aria-label="Toggle menu">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
 
-                <nav class="hidden md:flex space-x-8 text-base tracking-wide font-semibold">
+                <nav class="hidden md:flex space-x-8 text-base font-semibold">
                     <a href="index.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
                     <a href="about.html" class="text-white hover:text-emerald-400 transition-colors duration-300">About</a>
                     <a href="products.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Products</a>
@@ -123,92 +456,152 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 shadow-xl">
-            <a href="index.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Home</a>
-            <a href="about.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">About</a>
-            <a href="products.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Products</a>
-            <a href="contact.html" class="block py-3 px-4 text-base text-emerald-400 hover:bg-emerald-500/10">Contact</a>
+        <div id="mobile-menu" class="md:hidden fixed top-24 left-0 w-full bg-gray-900/95 backdrop-blur-md shadow-xl hidden">
+            <div class="flex flex-col p-4">
+                <a href="index.html" class="py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400 rounded-lg">Home</a>
+                <a href="about.html" class="py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400 rounded-lg">About</a>
+                <a href="products.html" class="py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400 rounded-lg">Products</a>
+                <a href="contact.html" class="py-3 px-4 text-base text-emerald-400 bg-emerald-500/10 rounded-lg">Contact</a>
+            </div>
         </div>
     </header>
 
-    <div class="h-24"></div> 
+    <div class="h-24"></div>
 
-    <main class="max-w-5xl mx-auto p-8 py-20">
+    <main class="max-w-6xl mx-auto px-4 md:px-8 py-12 md:py-20">
         
-        <div class="space-y-12"> 
+        <div class="space-y-16"> 
             
-            <div class="max-w-3xl mx-auto" data-aos="fade-right" data-aos-delay="100">
-                <h2 class="text-4xl font-extrabold mb-6 text-emerald-400 border-b border-gray-700 pb-2">Get In Touch</h2>
+            <!-- Enhanced Get In Touch Section with SHINY WHITE BACKGROUND -->
+            <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="section-title text-4xl md:text-5xl font-extrabold mb-8 text-emerald-400">Get In Touch</h2>
                 
-                <div class="glowing-card p-8 space-y-8">
-                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-3 flex items-center gap-3">
-                        <i class="fas fa-info-circle text-emerald-400"></i> Essential Contact Details
-                    </h3>
+                <div class="shiny-white-card p-8 md:p-10 space-y-10 relative z-10">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="contact-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-bold">Essential Contact Details</h3>
+                            <p class="text-gray-600 mt-1">Reach out to us through any of these channels</p>
+                        </div>
+                    </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
-                        <div class="space-y-6">
-                            <div class="flex items-start space-x-4">
-                                <i class="fas fa-phone-alt text-emerald-400 mt-1 flex-shrink-0 text-xl"></i>
-                                <div>
-                                    <strong class="text-gray-300 block mb-1">Phone Number:</strong>
-                                    <a href="tel:+918691953900" class="text-white hover:text-emerald-400 transition-colors block text-xl tracking-wide">+91-8691953900</a>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                        <!-- Left Column -->
+                        <div class="space-y-8">
+                            <!-- Phone -->
+                            <div class="contact-item flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <strong class="block text-lg font-semibold text-gray-800 mb-2">Phone Number</strong>
+                                    <a href="tel:+918691953900" class="text-xl md:text-2xl font-bold text-gray-900 hover:text-emerald-600 transition-colors block mb-1">
+                                        +91-8691953900
+                                    </a>
+                                    <p class="text-gray-600 text-sm">Direct line for immediate assistance</p>
                                 </div>
                             </div>
                             
-                            <div class="flex items-start space-x-4">
-                                <i class="fas fa-clock text-emerald-400 mt-1 flex-shrink-0 text-xl"></i>
-                                <div>
-                                    <strong class="text-gray-300 block mb-1">Working Hours:</strong>
-                                    <p class="text-white">Mon - Sat, 9:00 AM to 6:00 PM</p>
+                            <!-- Hours -->
+                            <div class="contact-item flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <strong class="block text-lg font-semibold text-gray-800 mb-2">Working Hours</strong>
+                                    <p class="text-gray-900 font-medium">Monday - Saturday</p>
+                                    <p class="text-gray-600">9:00 AM to 6:00 PM IST</p>
+                                    <p class="text-sm text-gray-500 mt-1">24/7 Emergency support available for critical inquiries</p>
                                 </div>
                             </div>
 
-                            <a href="https://wa.me/7700010890" target="_blank" 
-                               class="whatsapp-btn block text-center mt-6" data-aos="zoom-in" data-aos-delay="200">
-                                <i class="fab fa-whatsapp"></i> Chat on WhatsApp (Priority Support)
-                            </a>
+                            <!-- WhatsApp Button -->
+                            <div class="pt-4" data-aos="zoom-in" data-aos-delay="300">
+                                <a href="https://wa.me/7700010890" target="_blank" 
+                                   class="whatsapp-btn mx-auto">
+                                    <i class="fab fa-whatsapp"></i> 
+                                    <span class="whitespace-nowrap">Chat on WhatsApp</span>
+                                </a>
+                                <p class="text-center text-sm text-gray-600 mt-2">
+                                    <i class="fas fa-bolt text-emerald-500 mr-1"></i>
+                                    Priority support with instant response
+                                </p>
+                            </div>
                         </div>
                         
-                        <div class="space-y-6">
-                            <div class="flex items-start space-x-4">
-                                <i class="fas fa-envelope-open-text text-emerald-400 mt-1 flex-shrink-0 text-xl"></i>
-                                <div>
-                                    <strong class="text-gray-300 block mb-2">Key Email Addresses:</strong>
-                                    <p>
-                                        <span class="text-sm font-semibold text-emerald-300">Sales/Inquiry:</span><br>
-                                        <a href="mailto:sales@pristinebiopharma.com" class="text-white hover:text-emerald-400 transition-colors block">sales@pristinebiopharma.com</a>
-                                    </p>
-                                    <p class="mt-2">
-                                        <span class="text-sm font-semibold text-emerald-300">Procurement:</span><br>
-                                        <a href="mailto:purchase@pristinebiopharma.com" class="text-white hover:text-emerald-400 transition-colors block">purchase@pristinebiopharma.com</a>
-                                    </p>
-                                    <p class="mt-2">
-                                        <span class="text-sm font-semibold text-emerald-300">General Info:</span><br>
-                                        <a href="mailto:info@pristinebiopharma.com" class="text-white hover:text-emerald-400 transition-colors block">info@pristinebiopharma.com</a>
-                                    </p>
+                        <!-- Right Column - Emails -->
+                        <div class="space-y-8">
+                            <div class="contact-item flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope-open-text"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <strong class="block text-lg font-semibold text-gray-800 mb-4">Key Email Addresses</strong>
+                                    
+                                    <div class="space-y-6">
+                                        <div>
+                                            <span class="email-badge">Sales & Inquiry</span>
+                                            <a href="mailto:sales@pristinebiopharma.com" 
+                                               class="text-gray-900 hover:text-emerald-600 transition-colors font-medium block break-all">
+                                                sales@pristinebiopharma.com
+                                            </a>
+                                            <p class="text-gray-600 text-sm mt-1">For product inquiries and pricing</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <span class="email-badge">Procurement</span>
+                                            <a href="mailto:purchase@pristinebiopharma.com" 
+                                               class="text-gray-900 hover:text-emerald-600 transition-colors font-medium block break-all">
+                                                purchase@pristinebiopharma.com
+                                            </a>
+                                            <p class="text-gray-600 text-sm mt-1">For purchasing and supply chain</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <span class="email-badge">General Info</span>
+                                            <a href="mailto:info@pristinebiopharma.com" 
+                                               class="text-gray-900 hover:text-emerald-600 transition-colors font-medium block break-all">
+                                                info@pristinebiopharma.com
+                                            </a>
+                                            <p class="text-gray-600 text-sm mt-1">For general inquiries and support</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-700 pt-6">
-                        <div class="flex flex-col md:flex-row gap-8">
-                             <div class="flex items-start space-x-4 flex-1">
-                                <i class="fas fa-building text-emerald-400 mt-1 flex-shrink-0 text-xl"></i>
-                                <div>
-                                    <strong class="text-gray-300 block mb-1">Corporate Office:</strong>
-                                    <p class="text-gray-400 text-sm md:text-base">
-                                        Unit 830 Lodha Signet Lodha Premier,<br> Kalyan Shil Road - 421204
+                    <!-- Office Locations -->
+                    <div class="border-t border-gray-200 pt-8 mt-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div class="contact-item flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <strong class="block text-lg font-semibold text-gray-800 mb-2">Corporate Office</strong>
+                                    <p class="text-gray-900 font-medium">Unit 830 Lodha Signet Lodha Premier</p>
+                                    <p class="text-gray-600">Kalyan Shil Road - 421204</p>
+                                    <p class="text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-map-marker-alt text-emerald-500 mr-1"></i>
+                                        Headquarters for all corporate communications
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="flex items-start space-x-4 flex-1">
-                                <i class="fas fa-industry text-emerald-400 mt-1 flex-shrink-0 text-xl"></i>
-                                <div>
-                                    <strong class="text-gray-300 block mb-1">Manufacturing Unit:</strong>
-                                    <p class="text-gray-400 text-sm md:text-base">
-                                        Patalganga Complex B8 Industrial Area,<br> Off Bombay Pune Road Dist. RAIGAD (Rasayani) - 410207
+                            <div class="contact-item flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-industry"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <strong class="block text-lg font-semibold text-gray-800 mb-2">Manufacturing Unit</strong>
+                                    <p class="text-gray-900 font-medium">Patalganga Complex B8 Industrial Area</p>
+                                    <p class="text-gray-600">Off Bombay Pune Road Dist. RAIGAD (Rasayani) - 410207</p>
+                                    <p class="text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-cogs text-emerald-500 mr-1"></i>
+                                        State-of-the-art production facility
                                     </p>
                                 </div>
                             </div>
@@ -217,9 +610,13 @@
                 </div>
             </div>
 
-            <div data-aos="fade-up" data-aos-delay="300">
-                <h3 class="text-2xl font-bold mb-4 text-emerald-400 mt-12">Our Office Location</h3>
-                <div class="w-full h-96 rounded-xl border-2 border-emerald-500/40 overflow-hidden shadow-2xl shadow-emerald-500/10">
+            <!-- Map Section -->
+            <div data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-2xl md:text-3xl font-bold mb-6 text-emerald-400 flex items-center gap-3">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Our Office Location
+                </h3>
+                <div class="map-container">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30153.22159114755!2d73.080511!3d19.056073!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c151474d2871%3A0x2f90a1b65b61073!2sLodha%20Signet!5e0!3m2!1sen!2sin!4v1703672000000!5m2!1sen!2sin"
                         title="Map of Unit 830 Lodha Signet Lodha Premier, Kalyan Shil Road - 421204"
@@ -228,56 +625,67 @@
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerpolicy="no-referrer-when-downgrade"
+                        aria-label="Interactive map showing our office location">
                     </iframe>
                 </div>
-                <p class="text-center text-sm text-gray-500 mt-2">
-                    Our Office Address at Unit 830 Lodha Signet Lodha Premier.
+                <p class="text-center text-sm text-gray-500 mt-3">
+                    <i class="fas fa-info-circle text-emerald-400 mr-1"></i>
+                    Our corporate headquarters at Unit 830 Lodha Signet Lodha Premier, Kalyan
                 </p>
             </div>
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
             
             <div data-aos="fade-up" data-aos-delay="100">
                 <h4 class="text-xl font-bold mb-4 text-emerald-400">Pristine Biopharma</h4>
-                <p class="text-sm text-gray-400">Trusted supplier of certified chemical products for global industries.</p>
+                <p class="text-sm text-gray-400 leading-relaxed">Trusted supplier of certified chemical products for global industries with uncompromising quality standards.</p>
             </div>
             
             <div data-aos="fade-up" data-aos-delay="200">
                 <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="products.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Product Catalog</a></li>
-                    <li><a href="about.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Our Quality</a></li>
-                    <li><a href="contact.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Support</a></li>
+                    <li><a href="products.html" class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Product Catalog</a></li>
+                    <li><a href="about.html" class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Our Quality</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Support</a></li>
                 </ul>
             </div>
 
             <div data-aos="fade-up" data-aos-delay="300">
                 <h4 class="text-lg font-semibold mb-4">Contact</h4>
-                <p class="text-sm text-gray-400">
-                    Unit 830 Lodha Signet Lodha Premier, <br>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Unit 830 Lodha Signet Lodha Premier<br>
                     Email: info@pristinebiopharma.com<br>
                     Phone: (+91) 8691953900
                 </p>
             </div>
 
-            <div class="md:col-span-1" data-aos="fade-up" data-aos-delay="400">
-                <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="LinkedIn">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.013 4.85.074 3.024.148 4.073 1.198 4.22 4.22.061 1.266.074 1.646.074 4.85s-.013 3.584-.074 4.85c-.148 3.024-1.198 4.073-4.22 4.22-.061.012-.44.074-.85.074H8.15c-1.266 0-1.646-.013-4.85-.074-3.024-.148-4.073-1.198-4.22-4.22-.061-1.266-.074-1.646-.074-4.85s.013-3.584.074-4.85c.148-3.024 1.198-4.073 4.22-4.22.061-.012.44-.074.85-.074h7.7c.41 0 .79.062 1.2.074zM12 5.084c-3.87 0-7.005 3.135-7.005 7.004s3.135 7.004 7.005 7.004c3.87 0 7.005-3.135 7.005-7.004S15.87 5.084 12 5.084zM12 17.5c-3.048 0-5.5-2.452-5.5-5.5s2.452-5.5 5.5-5.5 5.5 2.452 5.5 5.5-2.452 5.5-5.5 5.5zM17.5 7.375c-.387 0-.704.317-.704.704s.317.704.704.704c.387 0 .704-.317.704-.704z"></path></svg>
+                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 p-2 bg-gray-800 rounded-lg" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in text-lg"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="LinkedIn">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.235-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 p-2 bg-gray-800 rounded-lg" aria-label="Instagram">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 p-2 bg-gray-800 rounded-lg" aria-label="Twitter">
+                        <i class="fab fa-twitter text-lg"></i>
+                    </a>
+                </div>
+                <div class="mt-6">
+                    <a href="contact.html" class="text-emerald-400 hover:text-emerald-300 font-semibold text-sm flex items-center gap-2">
+                        <i class="fas fa-paper-plane"></i>
+                        Send us a message
                     </a>
                 </div>
             </div>
 
         </div>
-        <div class="text-center mt-8 border-t border-gray-700 pt-6">
+        <div class="text-center mt-8 border-t border-gray-800 pt-6">
             <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
         </div>
     </footer>
@@ -285,51 +693,135 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Animate on Scroll (AOS) Initialization ---
+            // Initialize AOS with performance optimizations
             AOS.init({
                 once: true,
-                duration: 800,
-                delay: 100,
+                duration: 600,
+                offset: 100,
+                delay: 0,
+                easing: 'ease-out-cubic',
+                disable: window.innerWidth < 768 ? 'phone' : false
             });
 
-            // --- Mobile Menu Logic (From home.html) ---
+            // Enhanced Mobile Menu with touch optimization
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
             if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', function() {
+                // Touch/click handler
+                const toggleMenu = () => {
+                    const isHidden = mobileMenu.classList.contains('hidden');
                     mobileMenu.classList.toggle('hidden');
+                    
+                    // Prevent body scroll when menu is open
+                    document.body.style.overflow = isHidden ? 'hidden' : '';
+                    
+                    // Close menu when clicking outside
+                    if (isHidden) {
+                        const closeOnClickOutside = (e) => {
+                            if (!mobileMenu.contains(e.target) && e.target !== menuBtn) {
+                                mobileMenu.classList.add('hidden');
+                                document.body.style.overflow = '';
+                                document.removeEventListener('click', closeOnClickOutside);
+                            }
+                        };
+                        setTimeout(() => document.addEventListener('click', closeOnClickOutside), 10);
+                    }
+                };
+                
+                menuBtn.addEventListener('click', toggleMenu);
+                menuBtn.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    toggleMenu();
+                }, { passive: false });
+                
+                // Close menu on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    }
                 });
             }
-            
-            let lastScrollTop = 0; // Tracks the previous scroll position
-            const navWrapper = document.getElementById('nav-content-wrapper');
-            const HIDE_CLASS = 'hide-on-scroll'; // Class added to hide content
-            const SCROLL_THRESHOLD = 100; // Distance scrolled from top before behavior activates
 
-            if (navWrapper) {
-                window.addEventListener('scroll', function() {
-                    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-                    // Only activate the hide/show behavior if scrolled past the initial threshold
-                    if (currentScroll > SCROLL_THRESHOLD) {
-                        // Scrolling DOWN
-                        if (currentScroll > lastScrollTop) {
-                            // Scrolling down, navbar content should be HIDDEN
-                            navWrapper.classList.add(HIDE_CLASS);
-                        } else {
-                            // Scrolling UP
-                            // Scrolling up, navbar content should be VISIBLE
-                            navWrapper.classList.remove(HIDE_CLASS);
+            // Performance optimization - lazy load images
+            const images = document.querySelectorAll('img[data-src]');
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                            imageObserver.unobserve(img);
                         }
-                    } else {
-                        // Near the top of the page (within SCROLL_THRESHOLD), always show the content
-                        navWrapper.classList.remove(HIDE_CLASS);
-                    }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.1
+                });
+                
+                images.forEach(img => imageObserver.observe(img));
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
                     
-                    // Update lastScrollTop for the next scroll event
-                    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Ensure it's never negative
-                }, false);
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Optimize map loading
+            const mapIframe = document.querySelector('iframe');
+            if (mapIframe) {
+                // Set loading attribute for modern browsers
+                mapIframe.setAttribute('loading', 'lazy');
+                
+                // Show loading state
+                const mapContainer = mapIframe.parentElement;
+                const loadingDiv = document.createElement('div');
+                loadingDiv.className = 'map-loading';
+                loadingDiv.textContent = 'Loading map...';
+                mapContainer.appendChild(loadingDiv);
+                
+                mapIframe.addEventListener('load', () => {
+                    loadingDiv.style.display = 'none';
+                });
+            }
+
+            // Touch optimization for buttons
+            if ('ontouchstart' in window) {
+                document.querySelectorAll('.whatsapp-btn, .contact-item').forEach(element => {
+                    element.addEventListener('touchstart', function() {
+                        this.classList.add('active');
+                    }, { passive: true });
+                    
+                    element.addEventListener('touchend', function() {
+                        this.classList.remove('active');
+                    }, { passive: true });
+                });
+            }
+
+            // Performance monitoring
+            if ('performance' in window) {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        if (perfData && perfData.loadEventEnd) {
+                            console.log(`Page loaded in ${perfData.loadEventEnd}ms`);
+                        }
+                    }, 0);
+                });
             }
         });
     </script>

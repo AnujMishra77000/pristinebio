@@ -2,252 +2,1104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us | Pristine Biopharma</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>About Us | Pristine Biopharma - Excellence in Chemical Solutions</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- HIGH-TECH DARK MODE COLOR SCHEME (Copied from home.html) --- */
+        /* --- HIGH-TECH DARK MODE COLOR SCHEME (Consistent with index.html) --- */
         :root {
-            --color-primary: #1f2937; /* Dark Charcoal (used for cards/sections) */
-            --color-accent: #34d399; /* Emerald Green for high visibility */
-            --color-secondary: #0f172a; /* Deep Slate Background */
+            --color-primary: #1f2937;
+            --color-accent: #34d399;
+            --color-secondary: #0f172a;
         }
         
         body {
-            /* Dark, modern, stable background */
             background-color: var(--color-secondary);
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            color: #f3f4f6; /* Light gray text for high contrast */
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Premium gradient effects */
+        .premium-gradient {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* WHITE Card Base Style - Consistent with index.html */
+        .white-glow-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            min-height: 200px;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        .white-glow-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(52, 211, 153, 0.25), 
+                        0 0 0 1px rgba(52, 211, 153, 0.3);
+            border-color: var(--color-accent);
+        }
+
+        .white-glow-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .white-glow-card:hover::after {
+            left: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .white-glow-card {
+                border-radius: 1rem;
+                box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+                min-height: 250px;
+            }
+        }
+
+        /* Enhanced Card Content */
+        .segment-card-content {
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
         }
         
-        /* Ensures the title and primary headings use the accent color */
-        .accent-title {
+        .segment-card-content h3 {
+            color: var(--color-accent);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- ENHANCED NAVBAR HIDE ON SCROLL --- */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(52, 211, 153, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        header.scrolled {
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        /* Premium Stats Counter */
+        .stat-counter {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        /* UPDATED: WHITE Card Base Style */
+        .white-glow-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background-color: #ffffff !important; /* Force white background */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            min-height: 200px;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        .white-glow-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(52, 211, 153, 0.25), 
+                        0 0 0 1px rgba(52, 211, 153, 0.3);
+            border-color: var(--color-accent);
+        }
+
+        .white-glow-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .white-glow-card:hover::after {
+            left: 100%;
+        }
+
+        /* UPDATED: Enhanced Card Content - DARK TEXT */
+        .segment-card-content {
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+
+        .segment-card-content h3 {
+            color: #0d8b5e !important; /* Dark emerald for headings */
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .segment-card-content p {
+            color: #374151 !important; /* Dark gray for paragraph text */
+            line-height: 1.6;
+        }
+
+        /* UPDATED: Mission/Vision Cards - WHITE BACKGROUND */
+        .mission-vision-card {
+            background: #ffffff !important; /* White background */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            border-radius: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mission-vision-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(52, 211, 153, 0.2);
+        }
+
+        /* UPDATED: Mission/Vision Card Content - DARK TEXT */
+        .mission-vision-card h3 {
+            color: #0d8b5e !important; /* Dark emerald */
+        }
+
+        .mission-vision-card p {
+            color: #4b5563 !important; /* Dark gray */
+        }
+
+        .mission-vision-card .border-gray-800 {
+            border-color: #e5e7eb !important; /* Light gray for borders */
+        }
+
+        /* UPDATED: Value Cards - WHITE BACKGROUND */
+        .value-card {
+            background: #ffffff !important; /* White background */
+            border: 1px solid rgba(52, 211, 153, 0.1);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            background: rgba(52, 211, 153, 0.05) !important;
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        /* UPDATED: Value Card Content - DARK TEXT */
+        .value-card h3 {
+            color: #0d8b5e !important; /* Dark emerald */
+        }
+
+        .value-card p {
+            color: #4b5563 !important; /* Dark gray */
+        }
+
+        /* UPDATED: Timeline Cards - WHITE BACKGROUND */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            background: #ffffff !important; /* White background */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-accent), transparent);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 1.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        /* UPDATED: Timeline Content - DARK TEXT */
+        .timeline-item h3 {
+            color: #0d8b5e !important; /* Dark emerald */
+        }
+
+        .timeline-item p {
+            color: #4b5563 !important; /* Dark gray */
+        }
+
+        /* UPDATED: Text colors for WHITE CARDS - Enhanced contrast */
+        .text-gray-700 {
+            color: #374151 !important; /* Dark gray for good readability on white */
+        }
+
+        .text-gray-800 {
+            color: #1f2937 !important; /* Even darker for better contrast */
+        }
+
+        /* UPDATED: Icon containers with lighter backgrounds */
+        .w-16.h-16.bg-emerald-500\/10 {
+            background: rgba(13, 139, 94, 0.1) !important; /* Dark emerald tint */
+        }
+
+        .w-12.h-12.bg-emerald-500\/10 {
+            background: rgba(13, 139, 94, 0.1) !important; /* Dark emerald tint */
+        }
+
+        /* UPDATED: Specific fixes for Company Overview section cards */
+        .white-glow-card .text-emerald-800 {
+            color: #0d8b5e !important; /* Dark emerald for card headings */
+        }
+
+        .white-glow-card .text-gray-700 {
+            color: #4b5563 !important; /* Dark gray for card text */
+        }
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Enhanced Button Styles */
+        .premium-btn {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(52, 211, 153, 0.4);
+        }
+
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .premium-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Mission/Vision Cards */
+        .mission-vision-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            border-radius: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mission-vision-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(52, 211, 153, 0.2);
+        }
+
+        /* Value Cards */
+        .value-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(52, 211, 153, 0.1);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            background: rgba(52, 211, 153, 0.05);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-accent), transparent);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        /* Enhanced Footer */
+        footer {
+            background: linear-gradient(to bottom, #111827, #0f172a);
+            border-top: 1px solid rgba(52, 211, 153, 0.1);
+        }
+
+        .footer-link {
+            position: relative;
+            padding-left: 0;
+            transition: padding-left 0.3s ease;
+        }
+
+        .footer-link:hover {
+            padding-left: 1rem;
             color: var(--color-accent);
         }
 
-        /* Styling for the mission/vision block */
-        .mission-vision-card {
-            background-color: var(--color-primary);
-            border-left: 5px solid var(--color-accent);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* --- SCROLL HIDE STYLE (Copied from home.html) --- */
-        .nav-content > * {
-            opacity: 1; 
-            transition: opacity 0.3s ease-in-out;
+        .footer-link::before {
+            content: '→';
+            position: absolute;
+            left: -1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease, left 0.3s ease;
         }
 
-        .hide-on-scroll.nav-content > * {
-            opacity: 0;
-            pointer-events: none;
+        .footer-link:hover::before {
+            opacity: 1;
+            left: 0;
         }
-        /* --- END SCROLL HIDE STYLE --- */
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .section-heading {
+                font-size: 2rem !important;
+            }
+            
+            .premium-btn {
+                padding: 0.875rem 2rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .loading-dots span {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: pulse 1.4s ease-in-out infinite;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* UPDATED: Text colors for WHITE CARDS */
+        .text-gray-700 {
+            color: #374151;
+        }
+
+        .text-gray-800 {
+            color: #1f2937;
+        }
+
+        /* Hero Video Background */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
     </style>
 </head>
 
 <body>
-    <header class="fixed top-0 left-0 w-full z-50 h-24 bg-transparent">
-        <div class="max-w-6xl mx-auto h-full p-4">
+    <!-- ENHANCED HEADER (Consistent with index.html) -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-24 transition-all duration-400">
+        <div class="max-w-7xl mx-auto h-full p-4">
             <div id="nav-content-wrapper" class="flex justify-between items-center h-full nav-content"> 
-                <a href="index.html" class="flex items-center space-x-3">
-                    <img src="images/PB.png" alt="Pristine Biopharma Logo" class="h-28 w-auto filter drop-shadow-lg -mt-2"> 
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <img src="images/PB.png" alt="Logo" class="logo-img h-24 md:h-24 lg:h-32 w-auto">
                 </a>
                 
                 <div class="md:hidden">
-                    <button id="menu-btn" class="text-white focus:outline-none">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <button id="menu-btn" class="text-white focus:outline-none p-2 rounded-lg hover:bg-white/10 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
                     </button>
                 </div>
 
                 <nav class="hidden md:flex space-x-8 text-base tracking-wide font-semibold">
                     <a href="index.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
-                    <a href="about.html" class="text-emerald-400 transition-colors duration-300 border-b-2 border-emerald-400">About</a>
+                    <a href="about.html" class="text-emerald-400 border-b-2 border-emerald-400">About</a>
                     <a href="products.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Products</a>
                     <a href="contact.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Contact</a>
                 </nav>
             </div>
-            </div>
+        </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 shadow-xl">
-            <a href="index.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Home</a>
-            <a href="about.html" class="block py-3 px-4 text-base text-emerald-400 hover:bg-emerald-500/10">About</a>
-            <a href="products.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Products</a>
-            <a href="contact.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-lg shadow-2xl">
+            <div class="py-4">
+                <a href="index.html" class="block py-4 px-6 text-lg text-white hover:bg-emerald-500/10 hover:text-emerald-400 transition-all duration-300 border-l-4 border-transparent hover:border-emerald-400">
+                    <i class="fas fa-home mr-3"></i>Home
+                </a>
+                <a href="about.html" class="block py-4 px-6 text-lg text-emerald-400 border-l-4 border-emerald-400">
+                    <i class="fas fa-info-circle mr-3"></i>About
+                </a>
+                <a href="products.html" class="block py-4 px-6 text-lg text-white hover:bg-emerald-500/10 hover:text-emerald-400 transition-all duration-300 border-l-4 border-transparent hover:border-emerald-400">
+                    <i class="fas fa-boxes mr-3"></i>Products
+                </a>
+                <a href="contact.html" class="block py-4 px-6 text-lg text-white hover:bg-emerald-500/10 hover:text-emerald-400 transition-all duration-300 border-l-4 border-transparent hover:border-emerald-400">
+                    <i class="fas fa-phone mr-3"></i>Contact
+                </a>
+            </div>
         </div>
     </header>
 
-    <div class="h-24"></div> 
-    
-    <section class="bg-gray-900/50 pt-24 pb-32 md:pt-32 md:pb-40 border-b border-emerald-400/20">
-        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
-            <h1 class="text-5xl sm:text-7xl font-extrabold mb-4 text-white leading-tight">
-                Our Story: <span class="accent-title block sm:inline">Purity in Practice</span>
+    <div class="h-24"></div> <!-- Spacer for fixed header -->
+
+    <!-- Hero Section (Premium Video Background) -->
+    <section class="relative pt-24 pb-32 md:pt-32 md:pb-40 overflow-hidden min-h-[85vh] flex items-center justify-center">
+        <video class="hero-video" autoplay muted playsinline loop>
+            <source src="images/sec.mp4" type="video/mp4">
+        </video>
+        
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-900/70 via-gray-900/60 to-emerald-900/20 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center h-full max-w-6xl mx-auto px-6 text-center">
+            <div class="mb-6" data-aos="fade-down">
+                <span class="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    <i class="fas fa-star mr-2"></i>OUR LEGACY
+                </span>
+            </div>
+            
+            <h1 class="text-5xl sm:text-6xl lg:text-8xl font-extrabold mb-6 text-white leading-tight" 
+                data-aos="fade-down">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-emerald-300">
+                    Our Story.
+                </span>
+                <span class="block sm:inline-block mt-2">Defining Excellence.</span>
             </h1>
-            <p class="text-xl sm:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                Driving excellence in chemical supply with unparalleled quality, ethical sourcing, and client partnership.
+        
+            <p class="text-xl sm:text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-10" 
+                data-aos="fade-up" 
+                data-aos-delay="200">
+                Pioneering global chemical solutions with uncompromising quality, ethical practices, and scientific innovation since 2010.
             </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-6" data-aos="zoom-in" data-aos-delay="400">
+                <a href="#mission" class="premium-btn group">
+                    <span class="flex items-center justify-center">
+                        <i class="fas fa-bullseye mr-2"></i>
+                        Our Mission
+                    </span>
+                </a>
+                <a href="#timeline" class="px-8 py-4 rounded-full font-bold text-lg border-2 border-emerald-400 text-emerald-400 hover:bg-emerald-400/10 transition-all duration-300">
+                    <i class="fas fa-history mr-2"></i>Our Journey
+                </a>
+            </div>
         </div>
     </section>
 
-    <main class="max-w-6xl mx-auto p-8 py-20 md:py-32">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            
-            <div class="lg:col-span-2 space-y-8 text-lg text-gray-300">
-                <h2 class="text-4xl font-extrabold mb-4 accent-title" data-aos="fade-right">
-                    The Pristine Commitment
-                </h2>
-                
-                <p data-aos="fade-up" data-aos-delay="100">
-                    Founded on the principles of **integrity and scientific rigor**, Pristine Biopharma has rapidly become a trusted name in the high-grade chemical and pharmaceutical supply chain. We specialize in the distribution of high-quality Active Pharmaceutical Ingredients (APIs), certified Lab Reagents, and Essential Oils.
-                </p>
+    <!-- Company Stats -->
+    <section class="py-16 md:py-24 px-4 premium-gradient">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="stat-counter mb-2" data-count="14">0</div>
+                    <p class="text-gray-400 font-semibold">Years of Excellence</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-counter mb-2" data-count="500">0</div>
+                    <p class="text-gray-400 font-semibold">Global Partners</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-counter mb-2" data-count="50">0</div>
+                    <p class="text-gray-400 font-semibold">Countries Served</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-counter mb-2" data-count="99.9">0</div>
+                    <p class="text-gray-400 font-semibold">Quality Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <p data-aos="fade-up" data-aos-delay="200">
-                    Our commitment extends beyond mere distribution. We partner with world-class manufacturers who meet **stringent cGMP standards**, ensuring every product we handle possesses the purity, consistency, and reliability required for critical pharmaceutical, industrial, and cosmetic applications.
-                </p>
-                
-                <p data-aos="fade-up" data-aos-delay="300">
-                    Whether you are developing life-saving medications, conducting advanced research, or creating premium consumer products, Pristine Biopharma is your dedicated partner for **reliable, secure, and certified** chemical sourcing across the globe.
+    <!-- Company Overview -->
+    <section class="py-20 md:py-28 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    WHO WE ARE
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 text-white">
+                    The Pristine <span class="gradient-text">Difference</span>
+                </h2>
+                <p class="text-lg text-center text-gray-300 max-w-3xl mx-auto mb-12">
+                    We don't just supply chemicals – we deliver confidence, reliability, and partnership in every molecule.
                 </p>
             </div>
 
-            <div class="lg:col-span-1 space-y-8" data-aos="fade-left">
-                <div class="mission-vision-card p-6 rounded-lg">
-                    <h3 class="text-2xl font-bold mb-3 flex items-center accent-title">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c0 2.897 1.18 5.617 3.04 7.618A12.001 12.001 0 0012 21.056c2.897 0 5.617-1.18 7.618-3.04A12.001 12.001 0 0021.056 12a11.955 11.955 0 00-3.04-8.618z"></path></svg>
-                        Our Mission
-                    </h3>
-                    <p class="text-gray-400">
-                        To deliver top-quality chemical solutions with integrity and care, empowering our clients to achieve breakthroughs in health and technology.
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="space-y-6 text-lg text-gray-300">
+                        <p>
+                            Founded in 2010 on the principles of <span class="text-emerald-400 font-semibold">integrity and scientific rigor</span>, 
+                            Pristine Biopharma has evolved from a visionary startup to a globally recognized leader in high-grade chemical supply.
+                        </p>
+
+                        <p>
+                            Our journey began with a simple yet powerful mission: to bridge the gap between pharmaceutical innovation and 
+                            reliable chemical sourcing. Today, we stand as a trusted partner to <span class="text-emerald-400 font-semibold">500+ clients</span> 
+                            across 50+ countries, serving industries that shape human health and technological advancement.
+                        </p>
+                        
+                        <p>
+                            What sets us apart is our <span class="text-emerald-400 font-semibold">uncompromising commitment to quality</span>. Every product 
+                            in our portfolio undergoes rigorous testing and validation, ensuring it meets the highest industry standards 
+                            before reaching our partners.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6" data-aos="fade-left">
+                    <div class="white-glow-card p-6 text-center">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-handshake text-2xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-emerald-800">Trusted Partnership</h3>
+                        <p class="text-gray-700 text-sm">Building lasting relationships based on reliability and transparency</p>
+                    </div>
+
+                    <div class="white-glow-card p-6 text-center">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-flask text-2xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-emerald-800">Scientific Excellence</h3>
+                        <p class="text-gray-700 text-sm">Rigorous testing and validation for every chemical solution</p>
+                    </div>
+
+                    <div class="white-glow-card p-6 text-center">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-2xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-emerald-800">Quality Assurance</h3>
+                        <p class="text-gray-700 text-sm">cGMP compliance and ISO certifications across all operations</p>
+                    </div>
+
+                    <div class="white-glow-card p-6 text-center">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-globe text-2xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-emerald-800">Global Reach</h3>
+                        <p class="text-gray-700 text-sm">Efficient logistics network serving clients worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section id="mission" class="py-20 md:py-28 px-4 bg-gradient-to-b from-gray-900/50 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    OUR PURPOSE
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 text-white">
+                    Mission & <span class="gradient-text">Vision</span>
+                </h2>
+                <p class="text-lg text-center text-gray-400 max-w-3xl mx-auto">
+                    Guiding principles that define our journey and shape our future
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="mission-vision-card p-8" data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-bullseye text-2xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Our Mission</h3>
+                    </div>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        To empower global industries with pharmaceutical-grade chemical solutions that enhance healthcare outcomes, 
+                        drive sustainable innovation, and create measurable value through <span class="text-emerald-400">scientific excellence</span> 
+                        and <span class="text-emerald-400">ethical partnerships</span>.
+                    </p>
+                    <div class="mt-8 pt-6 border-t border-gray-800">
+                        <div class="flex flex-wrap items-center gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-emerald-400 mr-2"></i>
+                                <span class="text-sm text-gray-400">Quality First Approach</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-emerald-400 mr-2"></i>
+                                <span class="text-sm text-gray-400">Client-Centric Solutions</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-emerald-400 mr-2"></i>
+                                <span class="text-sm text-gray-400">Ethical Business Practices</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mission-vision-card p-8" data-aos="fade-left" data-aos-delay="200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-eye text-2xl text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Our Vision</h3>
+                    </div>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        To be the <span class="text-emerald-400">most trusted global partner</span> for pharmaceutical and industrial 
+                        chemical solutions, recognized for setting the benchmark in product purity, supply chain integrity, and 
+                        sustainable business practices that advance global health, technology, and environmental stewardship.
+                    </p>
+                    <div class="mt-8 pt-6 border-t border-gray-800">
+                        <div class="flex flex-wrap items-center gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe text-emerald-400 mr-2"></i>
+                                <span class="text-sm text-gray-400">Global Market Leadership</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-innovation text-emerald-400 mr-2"></i>
+                                <span class="text-sm text-gray-400">Innovation-Driven Growth</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-leaf text-emerald-400 mr-2"></i>
+                                <span class="text-sm text-gray-400">Sustainable Practices</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-20 md:py-28 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    OUR VALUES
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 text-white">
+                    The Pillars of <span class="gradient-text">Excellence</span>
+                </h2>
+                <p class="text-lg text-center text-gray-400 max-w-3xl mx-auto">
+                    Fundamental principles that guide every decision and action at Pristine Biopharma
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="value-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-certificate text-xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Quality Excellence</h3>
+                    <p class="text-gray-400 text-sm">
+                        Uncompromising commitment to purity, precision, and consistency in every product we deliver.
                     </p>
                 </div>
-                
-                <div class="mission-vision-card p-6 rounded-lg">
-                    <h3 class="text-2xl font-bold mb-3 flex items-center accent-title">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16L2 12l4-4"></path></svg>
-                        Our Vision
-                    </h3>
-                    <p class="text-gray-400">
-                        To be the most reliable global chemical supplier, recognized for setting the benchmark in product quality, ethical conduct, and supply chain excellence.
+
+                <div class="value-card p-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-user-shield text-xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Integrity First</h3>
+                    <p class="text-gray-400 text-sm">
+                        Transparent operations, ethical sourcing, and honest communication in all our partnerships.
+                    </p>
+                </div>
+
+                <div class="value-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Innovation Driven</h3>
+                    <p class="text-gray-400 text-sm">
+                        Continuous improvement through research, technology, and forward-thinking solutions.
+                    </p>
+                </div>
+
+                <div class="value-card p-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-hands-helping text-xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Client Partnership</h3>
+                    <p class="text-gray-400 text-sm">
+                        Building long-term relationships based on trust, reliability, and shared success.
                     </p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <section class="bg-gray-800 py-20 md:py-28 px-4 text-center">
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 md:py-28 px-4 bg-gradient-to-b from-transparent to-gray-900/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    OUR JOURNEY
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 text-white">
+                    Milestones of <span class="gradient-text">Growth</span>
+                </h2>
+                <p class="text-lg text-center text-gray-400 max-w-3xl mx-auto">
+                    A timeline of our evolution from vision to global leadership
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">2010 - Foundation</h3>
+                    <p class="text-gray-400">Pristine Biopharma founded with a vision to revolutionize chemical sourcing in the pharmaceutical industry with quality-first approach.</p>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">2014 - Global Expansion</h3>
+                    <p class="text-gray-400">Expanded operations to serve clients across Asia and Europe, establishing key distribution partnerships and quality protocols.</p>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">2018 - Quality Certification</h3>
+                    <p class="text-gray-400">Achieved ISO 9001:2015 certification and established cGMP compliant supply chain protocols, setting new industry standards.</p>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">2022 - 50+ Countries</h3>
+                    <p class="text-gray-400">Successfully served clients in 50+ countries, becoming a globally recognized chemical solutions provider with 500+ partnerships.</p>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                    <div class="timeline-dot"></div>
+                    <h3 class="text-xl font-bold mb-2 text-white">2024 - Present</h3>
+                    <p class="text-gray-400">Continuing innovation with 500+ products, 99.9% purity standards, 24/7 global support, and sustainable business practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 md:py-28 px-4 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-emerald-900/20">
         <div class="max-w-4xl mx-auto" data-aos="zoom-in">
             <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 text-white">
-                Quality Assurance is Our Baseline
+                Ready to Partner with Excellence?
             </h2>
-            <p class="text-lg sm:text-xl text-gray-300 mb-8">
-                Learn more about the certifications, testing protocols, and ethical sourcing policies that define a partnership with Pristine Biopharma.
+            <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Join hundreds of satisfied clients who trust Pristine Biopharma for their critical chemical needs.
             </p>
-            <a href="products.html#quality" class="bg-emerald-500 text-gray-900 px-10 py-4 rounded-full font-extrabold text-lg hover:bg-emerald-400 shadow-xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105">
-                View Our Quality Standards
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="premium-btn group">
+                    <span class="flex items-center justify-center">
+                        <i class="fas fa-file-invoice-dollar mr-2"></i>
+                        Request a Quote
+                    </span>
+                </a>
+                <a href="products.html" class="px-8 py-4 rounded-full font-bold text-lg border-2 border-emerald-400 text-emerald-400 hover:bg-emerald-400/10 transition-all duration-300">
+                    <i class="fas fa-boxes mr-2"></i>View Products
+                </a>
+            </div>
         </div>
     </section>
 
-
+    <!-- Footer (Consistent with index.html) -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-            
-            <div>
-                <h4 class="text-xl font-bold mb-4 accent-title">Pristine Biopharma</h4>
-                <p class="text-sm text-gray-400">Trusted supplier of certified chemical products for global industries.</p>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="products.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Product Catalog</a></li>
-                    <li><a href="about.html" class="text-emerald-400 transition-colors">Our Quality</a></li>
-                    <li><a href="contact.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Support</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-semibold mb-4">Contact</h4>
-                <p class="text-sm text-gray-400">
-                    123 Chem Street, Industrial Zone, New York, USA<br>
-                    Email: sales@pristinebiopharma.com<br>
-                    Phone: (+91) 8691953900
-                </p>
-            </div>
-
-            <div class="md:col-span-1">
-                <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.013 4.85.074 3.024.148 4.073 1.198 4.22 4.22.061 1.266.074 1.646.074 4.85s-.013 3.584-.074 4.85c-.148 3.024-1.198 4.073-4.22 4.22-.061.012-.44.074-.85.074H8.15c-1.266 0-1.646-.013-4.85-.074-3.024-.148-4.073-1.198-4.22-4.22-.061-1.266-.074-1.646-.074-4.85s.013-3.584.074-4.85c.148-3.024 1.198-4.073 4.22-4.22.061-.012.44-.074.85-.074h7.7c.41 0 .79.062 1.2.074zM12 5.084c-3.87 0-7.005 3.135-7.005 7.004s3.135 7.004 7.005 7.004c3.87 0 7.005-3.135 7.005-7.004S15.87 5.084 12 5.084zM12 17.5c-3.048 0-5.5-2.452-5.5-5.5s2.452-5.5 5.5-5.5 5.5 2.452 5.5 5.5-2.452 5.5-5.5 5.5zM17.5 7.375c-.387 0-.704.317-.704.704s.317.704.704.704c.387 0 .704-.317.704-.704z"></path></svg>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="inline-block mb-4">
+                        <img src="images/PB.png" alt="Logo" class="h-20 md:h-28 w-auto">
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6.727c-.455.201-.94.336-1.446.401.524-.314.927-.812 1.116-1.411-.49.294-1.034.509-1.61.623-.464-.495-1.127-.805-1.85-.805-1.404 0-2.544 1.139-2.544 2.544 0 .199.022.392.064.577-2.113-.106-3.985-1.116-5.32-2.659-.22.378-.346.82-.346 1.288 0 .885.452 1.666 1.138 2.126-.421-.013-.815-.129-1.157-.319v.033c0 1.232.876 2.259 2.037 2.493-.213.058-.438.089-.668.089-.164 0-.323-.016-.479-.047.323 1.01 1.261 1.748 2.371 1.768-1.026.804-2.32 1.284-3.729 1.284-.242 0-.48-.014-.716-.042 1.328.85 2.905 1.35 4.6 1.35 5.52 0 8.535-4.576 8.535-8.535 0-.13-.003-.26-.008-.39.588-.424 1.097-.948 1.503-1.543z"></path></svg>
-                    </a>
+                    <p class="text-sm text-gray-400 mb-4">Trusted supplier of certified chemical products for global industries.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-emerald-400">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="footer-link text-gray-400 hover:text-emerald-400 transition-colors">Product Catalog</a></li>
+                        <li><a href="about.html" class="footer-link text-emerald-400">Our Quality</a></li>
+                        <li><a href="contact.html" class="footer-link text-gray-400 hover:text-emerald-400 transition-colors">Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-emerald-400">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="pharma.html" class="footer-link text-gray-400 hover:text-emerald-400 transition-colors">Pharmaceutical APIs</a></li>
+                        <li><a href="lab.html" class="footer-link text-gray-400 hover:text-emerald-400 transition-colors">Lab Reagents</a></li>
+                        <li><a href="cosmetic.html" class="footer-link text-gray-400 hover:text-emerald-400 transition-colors">Cosmetic Ingredients</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-emerald-400">Contact</h4>
+                    <div class="space-y-3">
+                        <p class="text-sm text-gray-400 flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1 text-emerald-400"></i>
+                            Unit 830 Lodha Signet, Lodha Premier
+                        </p>
+                        <p class="text-sm text-gray-400 flex items-center">
+                            <i class="fas fa-envelope mr-3 text-emerald-400"></i>
+                            sales@pristinebiopharma.com
+                        </p>
+                        <p class="text-sm text-gray-400 flex items-center">
+                            <i class="fas fa-phone mr-3 text-emerald-400"></i>
+                            (+91) 8691953900
+                        </p>
+                    </div>
                 </div>
             </div>
-
-        </div>
-        <div class="text-center mt-8 border-t border-gray-700 pt-6">
-            <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            // --- Hamburger Menu Logic (Copied from home.html) ---
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            
-            // --- Animate on Scroll (AOS) Initialization (Copied from home.html) ---
+            // Initialize AOS
             AOS.init({
                 once: true,
                 duration: 800,
                 delay: 100,
+                offset: 100,
             });
 
-            // --- Scroll Direction Hide/Show Navbar Content Logic (Copied from home.html) ---
-            let lastScrollTop = 0; 
-            const navWrapper = document.getElementById('nav-content-wrapper');
-            const HIDE_CLASS = 'hide-on-scroll'; 
-            const SCROLL_THRESHOLD = 100; 
+            // Navbar Hide/Show on Scroll
+            const header = document.getElementById('main-header');
+            let lastScrollTop = 0;
+            const scrollThreshold = 100;
 
-            if (navWrapper) {
-                window.addEventListener('scroll', function() {
-                    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-                    if (currentScroll > SCROLL_THRESHOLD) {
-                        if (currentScroll > lastScrollTop) {
-                            navWrapper.classList.add(HIDE_CLASS);
-                        } else {
-                            navWrapper.classList.remove(HIDE_CLASS);
-                        }
+            window.addEventListener('scroll', function() {
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Add scrolled class when scrolling down
+                if (currentScroll > scrollThreshold) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Hide/show header based on scroll direction
+                if (currentScroll > scrollThreshold) {
+                    if (currentScroll > lastScrollTop) {
+                        // Scrolling down - hide header
+                        header.classList.add('hidden');
                     } else {
-                        navWrapper.classList.remove(HIDE_CLASS);
+                        // Scrolling up - show header
+                        header.classList.remove('hidden');
                     }
-                    
-                    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-                }, false);
+                } else {
+                    // At top - always show
+                    header.classList.remove('hidden');
+                }
+                
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            });
+
+            // Mobile Menu Logic
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('hidden');
+                document.body.classList.toggle('menu-open');
             }
-            // --- END SCROLL HIDE LOGIC ---
+            
+            if (menuBtn) {
+                menuBtn.addEventListener('click', toggleMobileMenu);
+            }
+            
+            // Close mobile menu when clicking links
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+
+            // Animated Counter
+            const counters = document.querySelectorAll('.stat-counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const increment = target / 50;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        if (target % 1 === 0) {
+                            counter.textContent = Math.floor(current) + (target === 24 ? '' : '+');
+                        } else {
+                            counter.textContent = current.toFixed(1) + '%';
+                        }
+                        setTimeout(updateCounter, 30);
+                    } else {
+                        if (target % 1 === 0) {
+                            counter.textContent = target + (target === 24 ? '' : '+');
+                        } else {
+                            counter.textContent = target + '%';
+                        }
+                    }
+                };
+                
+                // Start counter when in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(counter);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Card hover effects enhancement
+            document.querySelectorAll('.white-glow-card, .mission-vision-card, .value-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
         });
     </script>
 </body>

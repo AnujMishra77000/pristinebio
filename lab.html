@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pristine Biopharma - Pharmaceutical Sector</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Pristine Biopharma - Lab Reagents & Industrial Solvents</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- HIGH-TECH DARK MODE COLOR SCHEME --- */
@@ -24,6 +25,47 @@
             margin: 0;
             padding: 0;
             color: #f3f4f6; 
+            scroll-behavior: smooth;
+        }
+        
+        /* FIXED: Hero Section with Background - NO OVERLAP */
+        .hero-section {
+            background: 
+                linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.92)),
+                /* Use your local image file */
+                url('images/Labs.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Hero content container - PREVENTS OVERLAP */
+        .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Stats Bar - FIXED POSITIONING */
+        .stats-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            z-index: 3;
         }
         
         /* Card Base Style: Dark background, subtle lift */
@@ -46,7 +88,87 @@
         .text-accent {
             color: var(--color-accent);
         }
-
+        
+        /* Product Table Styling */
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        
+        .product-table th {
+            background-color: #111827;
+            color: var(--color-accent);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 2px solid var(--color-accent);
+        }
+        
+        .product-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #374151;
+        }
+        
+        .product-table tr:hover {
+            background-color: rgba(52, 211, 153, 0.05);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background-color: rgba(52, 211, 153, 0.1);
+            color: var(--color-accent);
+        }
+        
+        /* Loading Animation */
+        .loading-bar {
+            height: 3px;
+            width: 100%;
+            background-color: #374151;
+            position: relative;
+            overflow: hidden;
+            border-radius: 9999px;
+        }
+        
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background-color: var(--color-accent);
+            animation: loading 2s infinite ease-in-out;
+            border-radius: 9999px;
+        }
+        
+        @keyframes loading {
+            0% { left: -30%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Testimonial Cards */
+        .testimonial-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 120px;
+            color: rgba(52, 211, 153, 0.1);
+            font-family: serif;
+            z-index: 0;
+        }
+        
         /* --- CUBE FLIP CAROUSEL CUSTOM STYLES --- */
         
         /* 1. Sets the perspective for 3D depth */
@@ -64,7 +186,8 @@
             height: 100%;
             position: absolute;
             transform-style: preserve-3d;
-            transition: transform 1.5s cubic-bezier(0.8, 0, 0.2, 1); /* Slower, smoother transition */
+            transition: transform 1.2s cubic-bezier(0.5, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         /* 3. The individual faces (cards) of the cube */
@@ -84,222 +207,714 @@
         .face-2 { transform: rotateY( 90deg) translateZ(0); }
         .face-3 { transform: rotateY( 180deg) translateZ(0); }
         
-        /* This is only for a single-card view on mobile/desktop, showing one 'face' at a time. */
+        /* --- SCROLL HIDE STYLE (ADDED FROM REFERENCE) --- */
+        .nav-content > * {
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .hide-on-scroll.nav-content > * {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* FIXED: Mobile Responsiveness for Hero Section */
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+                min-height: 85vh;
+                padding-top: 100px;
+                padding-bottom: 160px; /* Space for stats bar */
+            }
+            
+            .hero-content {
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            /* Hero text sizing - NO SHRINKING */
+            .hero-section h1 {
+                font-size: 2.25rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 1rem !important;
+                padding: 0 0.5rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 1.5rem !important;
+                padding: 0 0.5rem;
+            }
+            
+            /* Hero buttons - STACK PROPERLY */
+            .hero-section .flex {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .hero-section .flex a {
+                width: 100%;
+                display: block;
+                padding: 0.875rem 1.5rem;
+                text-align: center;
+                font-size: 0.875rem;
+            }
+            
+            /* Stats bar - FIXED POSITIONING */
+            .stats-bar {
+                padding: 1rem 0;
+            }
+            
+            .stats-bar .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .stats-bar .text-3xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .stats-bar .text-sm {
+                font-size: 0.75rem !important;
+            }
+        }
+        
+        /* Desktop optimization */
+        @media (min-width: 769px) {
+            .hero-section {
+                padding-bottom: 120px; /* Space for stats bar */
+            }
+            
+            .hero-content {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 3.5rem !important;
+                line-height: 1.1 !important;
+            }
+        }
+        
+        /* Large desktop optimization */
+        @media (min-width: 1024px) {
+            .hero-section h1 {
+                font-size: 4rem !important;
+            }
+            
+            .hero-section p {
+                font-size: 1.25rem !important;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero-section {
+                min-height: 80vh;
+                padding-bottom: 140px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem !important;
+                padding: 0 0.25rem;
+            }
+            
+            .hero-section p {
+                font-size: 0.875rem !important;
+                padding: 0 0.25rem;
+            }
+        }
+        
+        /* Prevent content overflow globally */
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* Ensure text doesn't overflow */
+        .hero-section h1,
+        .hero-section p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Mobile menu fix */
+        @media (max-width: 768px) {
+            #mobile-menu {
+                position: fixed;
+                top: 6rem;
+                left: 0;
+                right: 0;
+                z-index: 9999;
+                background-color: rgba(17, 24, 39, 0.98);
+                backdrop-filter: blur(10px);
+            }
+            
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                /* Use same image for mobile, just different attachment */
+                background: 
+                    linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.92)),
+                    url('images/Labs.png');
+                background-size: cover;
+                background-position: center;
+                background-attachment: scroll; /* Changed to scroll for mobile */
+                /* rest of your mobile styles... */
+            }
+        }
         
     </style>
 </head>
 
 <body>
 
-    <header class="fixed top-0 left-0 w-full z-50 h-24 bg-gray-900/90 shadow-lg backdrop-blur-sm">
-        <div class="max-w-6xl mx-auto h-full p-4 flex justify-between items-center">
-             <a href="index.html" class="flex items-center space-x-3">
-                <img src="images/PB.png" alt="Logo" class="h-28 w-auto filter drop-shadow-lg -mt-2"> 
-            </a>
-            <nav class="space-x-8 text-base tracking-wide font-semibold">
-                <a href="index.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
-                <a href="#" class="text-emerald-400">Lab & Solvent</a>
-                <a href="products.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Products</a>
-            </nav>
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 h-24 bg-transparent">
+        <div class="max-w-6xl mx-auto h-full p-4">
+            <div id="nav-content-wrapper" class="flex justify-between items-center h-full nav-content">
+                 <a href="index.html" class="flex items-center space-x-3">
+                    <img src="images/PB.png" alt="Logo" class="h-20 md:h-28 w-auto filter drop-shadow-lg -mt-2"> 
+                </a>
+                
+                <nav class="space-x-8 text-base tracking-wide font-semibold hidden md:flex">
+                    <a href="index.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
+                    <a href="lab.html" class="text-emerald-400 border-b-2 border-emerald-400">Lab & Solvent</a>
+                    <a href="products.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Products</a>
+                    <a href="contact.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Contact</a>
+                </nav>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 shadow-xl">
+            <div class="flex flex-col">
+                <a href="index.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400 transition-colors duration-300">Home</a>
+                <a href="lab.html" class="block py-3 px-4 text-base text-emerald-400 hover:bg-emerald-500/10">Lab & Solvent</a>
+                <a href="products.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400 transition-colors duration-300">Products</a>
+                <a href="contact.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400 transition-colors duration-300">Contact</a>
+            </div>
         </div>
     </header>
+    
     <div class="h-24"></div> 
     
-    <section class="relative py-24 md:py-32 text-center bg-gray-900/90 border-b border-emerald-400/20">
-        <div class="max-w-4xl mx-auto px-4" data-aos="fade-up">
-            <h1 class="text-5xl sm:text-6xl font-extrabold mb-4 text-white">
-                <span class="text-accent">Lab Reagents and Industrial</span> Excellence
+    <!-- FIXED: Hero Section -->
+    <section class="hero-section text-center border-b border-emerald-400/20">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 md:mb-6 text-white">
+                <span class="text-accent">Lab Reagents</span> & <span class="text-accent">Industrial Solvents</span>
             </h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                Dedicated to the supply of Active Pharmaceutical Ingredients (APIs) and intermediates that define quality, efficacy, and trust in global drug manufacturing.
+            <p class="text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">
+                Premium quality laboratory reagents and industrial solvents for pharmaceutical research, development, and manufacturing.
             </p>
-        </div>
-    </section>
-
-   
-    <section class="bg-gray-900 py-20 md:py-28 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-extrabold text-center mb-16 text-white" data-aos="fade-up">
-                Our Core Lab Research and Development Experties
-            </h2>
-
-            <div class="space-y-6">
-                <details class="group rounded-xl border border-emerald-400/20 shadow-xl overflow-hidden bg-gray-900/70" data-aos="fade-up">
-                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none bg-gray-900/50 hover:bg-gray-900/70 transition-colors duration-300">
-                        <h3 class="text-2xl font-extrabold text-emerald-400 flex items-center">
-                            <svg class="w-6 h-6 mr-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16z"></path></svg>
-                             Lab Reagents
-                        </h3>
-                        <span class="text-white transform group-open:rotate-180 transition-transform duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
-                    </summary>
-                    
-                    <div class="px-6 pb-6 pt-4 bg-gray-900/50 text-gray-300 border-t border-emerald-400/20">
-                        <p class="mb-4 text-gray-300">
-                            We specialize in the synthesis and supply of highly stable and photostable compounds required for pharmaceutical formulations, guaranteeing extended shelf life and consistency under various storage conditions.
-                        </p>
-                        <h4 class="text-xl font-bold mb-2 text-white border-b border-gray-700 pb-1">Key Compounds:</h4>
-                        
-                        <ul class="list-none space-y-3 pl-0">
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">Lab Analytical</span>
-                                <p class="text-white text-sm mt-1">
-                                    A highly stable isotopic analog used in bioequivalence studies, ensuring precise measurements of the active ingredient Dipyridamole (vasodilator).
-                                </p>
-                            </li>
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">HPCL Columns</span>
-                                <p class="text-white text-sm mt-1">
-                                    The Drug Substance (DS) form of Dienogest, critical for hormonal therapies. Supplied with verified purity profiles and high crystalline consistency.
-                                </p>
-                            </li>
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">Merc Product List</span>
-                                <p class="text-white text-sm mt-1">
-                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
-                                </p>
-                            </li>
-                    
-                        </ul>
-                    </div>
-                </details>
-                <details class="group rounded-xl border border-emerald-400/20 shadow-xl overflow-hidden bg-gray-900/70" data-aos="fade-up">
-                    <summary class="flex justify-between items-center p-6 cursor-pointer list-none bg-gray-900/50 hover:bg-gray-900/70 transition-colors duration-300">
-                        <h3 class="text-2xl font-extrabold text-emerald-400 flex items-center">
-                            <svg class="w-6 h-6 mr-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16z"></path></svg>
-                             Industrial Solvent
-                        </h3>
-                        <span class="text-white transform group-open:rotate-180 transition-transform duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
-                    </summary>
-                    
-                    <div class="px-6 pb-6 pt-4 bg-gray-900/50 text-gray-300 border-t border-emerald-400/20">
-                        <p class="mb-4 text-gray-300">
-                            We specialize in the synthesis and supply of highly stable and photostable compounds required for pharmaceutical formulations, guaranteeing extended shelf life and consistency under various storage conditions.
-                        </p>
-                        <h4 class="text-xl font-bold mb-2 text-white border-b border-gray-700 pb-1">Key Compounds:</h4>
-                        
-                        <ul class="list-none space-y-3 pl-0">
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">Methanol</span>
-                                <p class="text-white text-sm mt-1">
-                                    A highly stable isotopic analog used in bioequivalence studies, ensuring precise measurements of the active ingredient Dipyridamole (vasodilator).
-                                </p>
-                            </li>
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">N-Hexane</span>
-                                <p class="text-white text-sm mt-1">
-                                    The Drug Substance (DS) form of Dienogest, critical for hormonal therapies. Supplied with verified purity profiles and high crystalline consistency.
-                                </p>
-                            </li>
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">M D C</span>
-                                <p class="text-white text-sm mt-1">
-                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
-                                </p>
-                            </li>
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">Ethyl</span>
-                                <p class="text-white text-sm mt-1">
-                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
-                                </p>
-                            </li>
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">Acetate</span>
-                                <p class="text-white text-sm mt-1">
-                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
-                                </p>
-                            </li>
-                            <li class="p-2 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm">
-                                <span class="text-accent font-bold">Acetonitrile</span>
-                                <p class="text-white text-sm mt-1">
-                                    A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                </details>
-                <a href="images/Merckpp.pdf" target="_blank" class="group rounded-xl border border-emerald-400/20 shadow-xl overflow-hidden bg-gray-900/70 block p-6 cursor-pointer hover:bg-gray-900/70 transition-colors duration-300" data-aos="fade-up">
-                    <div class="flex justify-between items-center list-none">
-                        <h3 class="text-2xl font-extrabold text-emerald-400 flex items-center">
-                            <svg class="w-6 h-6 mr-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16z"></path></svg>
-                            Merc Product List
-                        </h3>
-                        <span class="text-white">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </span>
-                    </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
+                <a href="#lab-reagents" class="bg-emerald-500 text-gray-900 px-5 md:px-6 py-3 rounded-full font-bold hover:bg-emerald-400 shadow-lg shadow-emerald-500/30 transition-all duration-300 text-sm md:text-base">
+                    Explore Lab Reagents
                 </a>
-                        
-                <div class="text-center pt-8" data-aos="zoom-in" data-aos-delay="200">
-                    <a href="products.html" class="bg-emerald-500 text-gray-900 px-8 py-3 rounded-full font-extrabold text-lg hover:bg-emerald-400 shadow-2xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105">
-                        View Complete Product Catalog
-                    </a>
+                <a href="#industrial-solvent" class="bg-transparent border-2 border-emerald-400 text-emerald-400 px-5 md:px-6 py-3 rounded-full font-bold hover:bg-emerald-400/10 transition-all duration-300 text-sm md:text-base">
+                    View Industrial Solvents
+                </a>
+            </div>
+        </div>
+        
+        <!-- FIXED: Stats Bar -->
+        <div class="stats-bar">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                        <!-- ADDED: data-value attribute for animation -->
+                        <div class="text-xl md:text-2xl lg:text-3xl font-bold text-accent stat-number" data-value="500">500+</div>
+                        <div class="text-gray-400 text-xs md:text-sm">Lab Reagents</div>
+                    </div>
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                        <!-- ADDED: data-value attribute for animation -->
+                        <div class="text-xl md:text-2xl lg:text-3xl font-bold text-accent stat-number" data-value="99.9">99.9%</div>
+                        <div class="text-gray-400 text-xs md:text-sm">Purity Guarantee</div>
+                    </div>
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                        <!-- 24/7 should not animate -->
+                        <div class="text-xl md:text-2xl lg:text-3xl font-bold text-accent">24/7</div>
+                        <div class="text-gray-400 text-xs md:text-sm">Support</div>
+                    </div>
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                        <!-- ISO should not animate -->
+                        <div class="text-xl md:text-2xl lg:text-3xl font-bold text-accent">ISO</div>
+                        <div class="text-gray-400 text-xs md:text-sm">Certified</div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </section>
-
-    <section class="py-20 md:py-28 px-4">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-4xl font-extrabold text-center mb-12 text-white" data-aos="fade-up">
-                Uncompromising Quality Assurance 🧪
+    
+<!-- Lab Reagents Section - KEEPING ORIGINAL DARK BACKGROUND -->
+<section id="lab-reagents" class="bg-gray-900 py-20 md:py-28 px-4">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-4xl font-extrabold mb-4 text-white">
+                Premium <span class="text-accent">Lab Reagents</span>
             </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                High-purity reagents for pharmaceutical research, analytical testing, and drug development.
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <!-- ONLY THIS DROPDOWN BUTTON HAS WHITE BACKGROUND -->
+            <details class="group rounded-xl border border-emerald-200 shadow-xl overflow-hidden" data-aos="fade-up">
+                <summary class="flex justify-between items-center p-6 cursor-pointer list-none bg-white hover:bg-emerald-50 transition-colors duration-300">
+                    <h3 class="text-2xl font-extrabold text-emerald-700 flex items-center">
+                        <i class="fas fa-flask mr-3 text-emerald-600"></i>
+                        Lab Analytical Reagents
+                    </h3>
+                    <span class="text-emerald-600 transform group-open:rotate-180 transition-transform duration-300">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </summary>
+                
+                <!-- KEEP ORIGINAL DARK CONTENT INSIDE -->
+                <div class="px-6 pb-6 pt-4 bg-gray-900/50 text-gray-300 border-t border-emerald-400/20">
+                    <p class="mb-6 text-gray-300">
+                        We specialize in the synthesis and supply of highly stable and photostable compounds required for pharmaceutical formulations, guaranteeing extended shelf life and consistency under various storage conditions.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="pharma-card">
+                            <div class="text-accent mb-3">
+                                <i class="fas fa-vial text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-white">Analytical Standards</h4>
+                            <p class="text-gray-400">Certified reference materials with documented purity for precise analytical measurements.</p>
+                        </div>
+                        <div class="pharma-card">
+                            <div class="text-accent mb-3">
+                                <i class="fas fa-microscope text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-white">Chromatography</h4>
+                            <p class="text-gray-400">HPLC, GC, and TLC reagents for separation and analysis of pharmaceutical compounds.</p>
+                        </div>
+                        <div class="pharma-card">
+                            <div class="text-accent mb-3">
+                                <i class="fas fa-dna text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-white">Molecular Biology</h4>
+                            <p class="text-gray-400">Enzymes, buffers, and reagents for molecular biology and biotechnology applications.</p>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-xl font-bold mb-4 text-white border-b border-gray-700 pb-2">Featured Products:</h4>
+                    
+                    <ul class="list-none space-y-3 pl-0">
+                        <li class="p-3 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm hover:bg-gray-900/60 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="text-accent font-bold">Deuterated Dipyridamole</span>
+                                <span class="badge">In Stock</span>
+                            </div>
+                            <p class="text-white text-sm mt-1">
+                                A highly stable isotopic analog used in bioequivalence studies, ensuring precise measurements of the active ingredient Dipyridamole (vasodilator).
+                            </p>
+                        </li>
+                        <li class="p-3 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm hover:bg-gray-900/60 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="text-accent font-bold">Dienogest Drug Substance</span>
+                                <span class="badge">High Purity</span>
+                            </div>
+                            <p class="text-white text-sm mt-1">
+                                The Drug Substance (DS) form of Dienogest, critical for hormonal therapies. Supplied with verified purity profiles and high crystalline consistency.
+                            </p>
+                        </li>
+                        <li class="p-3 border-l-4 border-emerald-400 bg-gray-900/40 rounded-sm hover:bg-gray-900/60 transition-colors">
+                            <div class="flex justify-between items-center">
+                                <span class="text-accent font-bold">Deuterated Isoniazid</span>
+                                <span class="badge">Research Grade</span>
+                            </div>
+                            <p class="text-white text-sm mt-1">
+                                A deuterated internal standard for Isoniazid, providing exceptional accuracy for quantitative analysis in complex matrices for anti-tuberculosis treatments.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+            
+            <!-- SECOND DROPDOWN BUTTON ALSO HAS WHITE BACKGROUND -->
+            <details id="industrial-solvent" class="group rounded-xl border border-emerald-200 shadow-xl overflow-hidden" data-aos="fade-up">
+                <summary class="flex justify-between items-center p-6 cursor-pointer list-none bg-white hover:bg-emerald-50 transition-colors duration-300">
+                    <h3 class="text-2xl font-extrabold text-emerald-700 flex items-center">
+                        <i class="fas fa-industry mr-3 text-emerald-600"></i>
+                        Industrial Solvents
+                    </h3>
+                    <span class="text-emerald-600 transform group-open:rotate-180 transition-transform duration-300">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </summary>
+                
+                <!-- KEEP ORIGINAL DARK CONTENT INSIDE -->
+                <div class="px-6 pb-6 pt-4 bg-gray-900/50 text-gray-300 border-t border-emerald-400/20">
+                    <p class="mb-6 text-gray-300">
+                        High-purity industrial solvents for pharmaceutical manufacturing, extraction, purification, and formulation processes.
+                    </p>
+                    
+                    <!-- Product Table -->
+                    <div class="overflow-x-auto">
+                        <table class="product-table">
+                            <thead>
+                                <tr>
+                                    <th>Solvent</th>
+                                    <th>Purity</th>
+                                    <th>Grade</th>
+                                    <th>Application</th>
+                                    <th>Packaging</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-bold">Methanol</td>
+                                    <td>>99.9%</td>
+                                    <td><span class="badge">HPLC</span></td>
+                                    <td>Chromatography, Extraction</td>
+                                    <td>1L, 2.5L, 20L</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">N-Hexane</td>
+                                    <td>>99.5%</td>
+                                    <td><span class="badge">ACS</span></td>
+                                    <td>Lipid Extraction, Purification</td>
+                                    <td>1L, 4L, 20L</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">Methylene Chloride</td>
+                                    <td>>99.8%</td>
+                                    <td><span class="badge">Reagent</span></td>
+                                    <td>Chemical Synthesis, Extraction</td>
+                                    <td>1L, 2.5L, 20L</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">Ethyl Acetate</td>
+                                    <td>>99.7%</td>
+                                    <td><span class="badge">ACS</span></td>
+                                    <td>Extraction, Chromatography</td>
+                                    <td>1L, 2.5L, 20L</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">Acetonitrile</td>
+                                    <td>>99.9%</td>
+                                    <td><span class="badge">HPLC</span></td>
+                                    <td>Chromatography, Spectroscopy</td>
+                                    <td>1L, 4L, 20L</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold">Acetone</td>
+                                    <td>>99.5%</td>
+                                    <td><span class="badge">ACS</span></td>
+                                    <td>Cleaning, Extraction</td>
+                                    <td>1L, 4L, 20L</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-gray-900/60 rounded-lg border border-emerald-400/20">
+                        <h4 class="text-lg font-bold mb-2 text-white flex items-center">
+                            <i class="fas fa-info-circle text-accent mr-2"></i>
+                            Quality Assurance
+                        </h4>
+                        <p class="text-gray-300 text-sm">
+                            All solvents are supplied with Certificate of Analysis (CoA), batch-specific documentation, and are stored under controlled conditions to ensure stability and performance.
+                        </p>
+                    </div>
+                </div>
+            </details>
+            
+            <!-- KEEP ORIGINAL MERCK CATALOG LINK (DARK) -->
+            <!-- Merck Catalog with WHITE BACKGROUND -->
+            <a href="images/Merckpp.pdf" target="_blank" class="group rounded-xl border border-emerald-200 shadow-xl overflow-hidden bg-white block p-6 cursor-pointer hover:bg-emerald-50 transition-all duration-300" data-aos="fade-up">
+                <div class="flex justify-between items-center list-none">
+                    <div class="flex items-center">
+                        <div class="mr-4 p-3 bg-emerald-100 rounded-lg">
+                            <i class="fas fa-file-pdf text-2xl text-emerald-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-emerald-700">
+                                Merck Product Catalog
+                            </h3>
+                            <p class="text-gray-700 mt-1">Download our complete product catalog with specifications and pricing</p>
+                        </div>
+                    </div>
+                    <span class="text-emerald-600 group-hover:translate-x-2 transition-transform">
+                        <i class="fas fa-external-link-alt text-xl"></i>
+                    </span>
+                </div>
+            </a>
+                    
+            <!-- KEEP ORIGINAL BUTTON (GREEN) -->
+            <div class="text-center pt-8" data-aos="zoom-in" data-aos-delay="200">
+                <a href="products.html" class="bg-emerald-500 text-gray-900 px-8 py-3 rounded-full font-extrabold text-lg hover:bg-emerald-400 shadow-2xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105 inline-flex items-center">
+                    View Complete Product Catalog
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Quality Assurance Section -->
+    <section class="py-20 md:py-28 px-4 bg-gray-900/50">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-4xl font-extrabold mb-4 text-white">
+                    Uncompromising <span class="text-accent">Quality Assurance</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Our commitment to quality ensures every product meets the highest standards of purity and reliability.
+                </p>
+            </div>
+            
+            <!-- Loading Animation for Auto-Flip -->
+            <div class="loading-bar mb-6 max-w-md mx-auto" id="loading-bar"></div>
             
             <div class="flip-container" data-aos="zoom-in" data-aos-delay="100">
                 <div id="flip-card" class="flip-card">
                     
                     <div class="flip-face face-1 p-4">
-                        <div class="pharma-card space-y-3">
-                            <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c0 2.897 1.18 5.617 3.04 7.618A12.001 12.001 0 0012 21.056c2.897 0 5.617-1.18 7.618-3.04A12.001 12.001 0 0021.056 12a11.955 11.955 0 00-3.04-8.618z"></path></svg>
-                            <h3 class="text-2xl font-bold text-white">cGMP Standards</h3>
-                            <p class="text-gray-400">
+                        <div class="bg-white rounded-xl shadow-xl space-y-4 p-6"> <!-- Changed: white background -->
+                            <div class="flex items-center justify-between">
+                                <div class="text-emerald-500"> <!-- Changed: emerald color -->
+                                    <i class="fas fa-certificate text-2xl"></i> <!-- Added icon -->
+                                </div>
+                                <span class="text-xs text-emerald-600/70 font-semibold">1/3</span> <!-- Changed: emerald color -->
+                            </div>
+                            <h3 class="text-2xl font-bold text-emerald-800">cGMP Standards</h3> <!-- Changed: emerald color -->
+                            <p class="text-gray-700"> <!-- Changed: darker text for better contrast -->
                                 Every ingredient is produced under strict Current Good Manufacturing Practices (cGMP) protocols, ensuring safety, quality, and purity from synthesis to delivery.
                             </p>
-                            <span class="text-xs text-emerald-400/50 block pt-4">Click/Tap to pause rotation</span>
+                            <div class="pt-2">
+                                <span class="text-xs text-emerald-600/70 font-medium">Click to pause rotation</span> <!-- Changed: emerald color -->
+                            </div>
                         </div>
                     </div>
 
                     <div class="flip-face face-2 p-4">
-                        <div class="pharma-card space-y-3">
-                            <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0013.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2h3zm7-11H9m5 4H9m5 4H9"></path></svg>
-                            <h3 class="text-2xl font-bold text-white">Advanced Analysis</h3>
-                            <p class="text-gray-400">
-                                Our materials undergo rigorous testing, including HPLC and mass spectrometry, to guarantee >99.9% purity and verifiable molecular consistency.
+                        <div class="bg-white rounded-xl shadow-xl space-y-4 p-6"> <!-- Changed: white background -->
+                            <div class="flex items-center justify-between">
+                                <div class="text-emerald-500"> <!-- Changed: emerald color -->
+                                    <i class="fas fa-microscope text-2xl"></i> <!-- Added icon -->
+                                </div>
+                                <span class="text-xs text-emerald-600/70 font-semibold">2/3</span> <!-- Changed: emerald color -->
+                            </div>
+                            <h3 class="text-2xl font-bold text-emerald-800">Advanced Analysis</h3> <!-- Changed: emerald color -->
+                            <p class="text-gray-700"> <!-- Changed: darker text for better contrast -->
+                                Our materials undergo rigorous testing, including HPLC, GC-MS, and NMR, to guarantee >99.9% purity and verifiable molecular consistency.
                             </p>
-                            <span class="text-xs text-emerald-400/50 block pt-4">Click/Tap to pause rotation</span>
+                            <div class="pt-2">
+                                <span class="text-xs text-emerald-600/70 font-medium">Click to pause rotation</span> <!-- Changed: emerald color -->
+                            </div>
                         </div>
                     </div>
 
                     <div class="flip-face face-3 p-4">
-                        <div class="pharma-card space-y-3">
-                            <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10h16V7M4 7h16M4 7l2.5 5 2.5-5 2.5 5 2.5-5 2.5 5 2.5-5M4 17h16"></path></svg>
-                            <h3 class="text-2xl font-bold text-white">Full Traceability</h3>
-                            <p class="text-gray-400">
+                        <div class="bg-white rounded-xl shadow-xl space-y-4 p-6"> <!-- Changed: white background -->
+                            <div class="flex items-center justify-between">
+                                <div class="text-emerald-500"> <!-- Changed: emerald color -->
+                                    <i class="fas fa-search text-2xl"></i> <!-- Added icon -->
+                                </div>
+                                <span class="text-xs text-emerald-600/70 font-semibold">3/3</span> <!-- Changed: emerald color -->
+                            </div>
+                            <h3 class="text-2xl font-bold text-emerald-800">Full Traceability</h3> <!-- Changed: emerald color -->
+                            <p class="text-gray-700"> <!-- Changed: darker text for better contrast -->
                                 Complete batch traceability ensures transparency and accountability, providing the critical documentation required for regulatory audits and submissions.
                             </p>
-                            <span class="text-xs text-emerald-400/50 block pt-4">Click/Tap to pause rotation</span>
+                            <div class="pt-2">
+                                <span class="text-xs text-emerald-600/70 font-medium">Click to pause rotation</span> <!-- Changed: emerald color -->
+                            </div>
                         </div>
                     </div>
                     
                 </div>
             </div>
             
-            <div class="flex justify-center mt-6 space-x-2">
-                <button data-index="0" class="dot w-3 h-3 bg-emerald-400 rounded-full transition-colors"></button>
-                <button data-index="1" class="dot w-3 h-3 bg-gray-700 hover:bg-gray-500 rounded-full transition-colors"></button>
-                <button data-index="2" class="dot w-3 h-3 bg-gray-700 hover:bg-gray-500 rounded-full transition-colors"></button>
+            <div class="flex justify-center items-center mt-8 space-x-4">
+                <button id="prev-btn" class="p-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="flex space-x-2">
+                    <button data-index="0" class="dot w-3 h-3 bg-emerald-400 rounded-full transition-colors"></button>
+                    <button data-index="1" class="dot w-3 h-3 bg-gray-700 hover:bg-gray-500 rounded-full transition-colors"></button>
+                    <button data-index="2" class="dot w-3 h-3 bg-gray-700 hover:bg-gray-500 rounded-full transition-colors"></button>
+                </div>
+                <button id="next-btn" class="p-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
             
         </div>
     </section>
     
+    <!-- Testimonials Section -->
+<section class="py-20 md:py-28 px-4 bg-gradient-to-b from-gray-900 to-emerald-900/10">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-4xl font-extrabold mb-4 text-white">
+                Trusted by <span class="text-accent">Industry Leaders</span>
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Pharmaceutical companies and research institutions rely on our reagents and solvents for their critical work.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="testimonial-card bg-white rounded-xl shadow-2xl hover:shadow-emerald-200/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 flex items-center justify-center mr-4 shadow-lg">
+                            <i class="fas fa-user text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Vivan Life Science</h4>
+                            <p class="text-emerald-700 text-sm font-medium bg-emerald-50 px-2 py-1 rounded-full inline-block mt-1">
+                                Research & Innovation Company
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-quote-left text-emerald-100 text-3xl absolute -top-2 -left-2"></i>
+                        <p class="text-gray-700 italic pl-6 relative z-10">
+                            "The deuterated standards from Pristine Biopharma have been invaluable for our bioequivalence studies. The consistency and documentation are exceptional."
+                        </p>
+                    </div>
+                    <div class="flex text-emerald-500 mt-6 border-t border-emerald-100 pt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-sm text-emerald-700 font-bold ml-2">4.5/5</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card bg-white rounded-xl shadow-2xl hover:shadow-emerald-200/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 flex items-center justify-center mr-4 shadow-lg">
+                            <i class="fas fa-user text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Alivus Life Science</h4>
+                            <p class="text-emerald-700 text-sm font-medium bg-emerald-50 px-2 py-1 rounded-full inline-block mt-1">
+                                Leading Pharma Company
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-quote-left text-emerald-100 text-3xl absolute -top-2 -left-2"></i>
+                        <p class="text-gray-700 italic pl-6 relative z-10">
+                            "Their HPLC-grade solvents consistently meet our stringent specifications. The Certificate of Analysis with every batch gives us complete confidence."
+                        </p>
+                    </div>
+                    <div class="flex text-emerald-500 mt-6 border-t border-emerald-100 pt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span class="text-sm text-emerald-700 font-bold ml-2">4.0/5</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card bg-white rounded-xl shadow-2xl hover:shadow-emerald-200/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 flex items-center justify-center mr-4 shadow-lg">
+                            <i class="fas fa-user text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Omsav Pharma Research</h4>
+                            <p class="text-emerald-700 text-sm font-medium bg-emerald-50 px-2 py-1 rounded-full inline-block mt-1">
+                                Integrated R&D Excellence
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-quote-left text-emerald-100 text-3xl absolute -top-2 -left-2"></i>
+                        <p class="text-gray-700 italic pl-6 relative z-10">
+                            "We've been using their lab reagents for 3 years now. The technical support is outstanding, and product quality has never been an issue."
+                        </p>
+                    </div>
+                    <div class="flex text-emerald-500 mt-6 border-t border-emerald-100 pt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-sm text-emerald-700 font-bold ml-2">4.5/5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Added: Additional decorative element -->
+        <div class="text-center mt-12" data-aos="fade-up">
+            <div class="inline-flex items-center space-x-4 text-emerald-400">
+                <div class="h-px w-20 bg-gradient-to-r from-transparent to-emerald-400"></div>
+                <span class="text-sm font-semibold tracking-wider">TRUSTED PARTNERSHIPS</span>
+                <div class="h-px w-20 bg-gradient-to-r from-emerald-400 to-transparent"></div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- Contact CTA -->
+    <section id="contact" class="py-20 px-4 bg-gradient-to-r from-gray-900 to-emerald-900/20">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-4xl font-extrabold mb-6 text-white">
+                Need Specific Reagents or Solvents?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Contact our technical team for custom requirements, bulk pricing, or technical specifications.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:info@pristinebiopharma.com" class="bg-emerald-500 text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-emerald-400 shadow-lg shadow-emerald-500/30 transition-all duration-300 inline-flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Email Us
+                </a>
+                <a href="tel:08691953900" class="bg-transparent border-2 border-emerald-400 text-emerald-400 px-8 py-3 rounded-full font-bold hover:bg-emerald-400/10 transition-all duration-300 inline-flex items-center">
+                    <i class="fas fa-phone mr-2"></i>
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <footer class="bg-gray-900 text-white py-10 border-t border-gray-700">
-        <div class="text-center max-w-6xl mx-auto px-6">
-            <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <img src="images/PB.png" alt="Logo" class="h-20 w-auto filter drop-shadow-lg">
+                    </a>
+                    <p class="text-gray-500 text-sm mt-2">Excellence in Pharmaceutical Ingredients</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="index.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Home</a>
+                    <a href="#" class="text-emerald-400">Lab & Solvent</a>
+                    <a href="products.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Products</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -313,14 +928,89 @@
                 delay: 100,
             });
             
-            // --- CUBE FLIP CAROUSEL LOGIC ---
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            function closeMobileMenu() {
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+            
+            function openMobileMenu() {
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('hidden');
+                }
+            }
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        openMobileMenu();
+                    } else {
+                        closeMobileMenu();
+                    }
+                });
+                
+                // Close mobile menu when clicking any link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+                
+                // Close menu on escape key
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                        closeMobileMenu();
+                    }
+                });
+            }
+            
+            // --- SCROLL DIRECTION HIDE/SHOW NAVBAR LOGIC (ADDED FROM REFERENCE) ---
+            let lastScrollTop = 0;
+            const navWrapper = document.getElementById('nav-content-wrapper');
+            const HIDE_CLASS = 'hide-on-scroll';
+            const SCROLL_THRESHOLD = 100;
+
+            if (navWrapper) {
+                window.addEventListener('scroll', function() {
+                    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                    if (currentScroll > SCROLL_THRESHOLD) {
+                        if (currentScroll > lastScrollTop) {
+                            // Scrolling DOWN - hide
+                            navWrapper.classList.add(HIDE_CLASS);
+                        } else {
+                            // Scrolling UP - show
+                            navWrapper.classList.remove(HIDE_CLASS);
+                        }
+                    } else {
+                        // Near top - always show
+                        navWrapper.classList.remove(HIDE_CLASS);
+                    }
+                    
+                    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+                }, false);
+            }
+            // --- END SCROLL HIDE LOGIC ---
+            
+            // --- ENHANCED CUBE FLIP CAROUSEL LOGIC ---
             const flipCard = document.getElementById('flip-card');
             const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playPauseIcon = document.getElementById('play-pause-icon');
+            const loadingBar = document.getElementById('loading-bar');
+            
             const totalFaces = 3;
             let currentFace = 0;
-            const flipDuration = 5000; // 5 seconds interval
+            const flipDuration = 4000; // 4 seconds interval
             let autoFlipInterval;
-
+            let isPlaying = true;
+            let rotationProgress = 0;
+            
             // Defines the rotation angle for each face
             const rotations = [
                 'rotateY(0deg)',
@@ -329,14 +1019,23 @@
             ];
             
             function updateDots() {
-                dots.forEach(dot => {
-                    dot.classList.remove('bg-emerald-400');
-                    dot.classList.add('bg-gray-700', 'hover:bg-gray-500');
+                dots.forEach((dot, index) => {
+                    if (index === currentFace) {
+                        dot.classList.remove('bg-gray-700', 'hover:bg-gray-500');
+                        dot.classList.add('bg-emerald-400');
+                    } else {
+                        dot.classList.remove('bg-emerald-400');
+                        dot.classList.add('bg-gray-700', 'hover:bg-gray-500');
+                    }
                 });
-                dots[currentFace].classList.add('bg-emerald-400');
-                dots[currentFace].classList.remove('bg-gray-700', 'hover:bg-gray-500');
             }
-
+            
+            function updateLoadingBar(progress) {
+                if (loadingBar) {
+                    loadingBar.style.setProperty('--progress', `${progress}%`);
+                }
+            }
+            
             function flipToFace(index) {
                 currentFace = index % totalFaces;
                 if (currentFace < 0) {
@@ -344,45 +1043,152 @@
                 }
                 flipCard.style.transform = rotations[currentFace];
                 updateDots();
+                rotationProgress = 0;
+                updateLoadingBar(0);
             }
-
+            
             function startAutoFlip() {
                 clearInterval(autoFlipInterval); // Clear any existing interval
+                rotationProgress = 0;
+                
                 autoFlipInterval = setInterval(() => {
-                    flipToFace(currentFace + 1);
-                }, flipDuration);
+                    rotationProgress += 100 / (flipDuration / 100); // Increment progress
+                    updateLoadingBar(Math.min(rotationProgress, 100));
+                    
+                    if (rotationProgress >= 100) {
+                        flipToFace(currentFace + 1);
+                    }
+                }, 100);
+                
+                isPlaying = true;
+                if (playPauseIcon) {
+                    playPauseIcon.classList.remove('fa-play');
+                    playPauseIcon.classList.add('fa-pause');
+                }
             }
-
-            function handleManualFlip() {
-                // Pause auto-flip on manual interaction
+            
+            function pauseAutoFlip() {
                 clearInterval(autoFlipInterval);
+                isPlaying = false;
+                if (playPauseIcon) {
+                    playPauseIcon.classList.remove('fa-pause');
+                    playPauseIcon.classList.add('fa-play');
+                }
+            }
+            
+            function togglePlayPause() {
+                if (isPlaying) {
+                    pauseAutoFlip();
+                } else {
+                    startAutoFlip();
+                }
             }
             
             // Add click listeners to dots
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
-                    handleManualFlip();
+                    pauseAutoFlip();
                     flipToFace(index);
                 });
             });
-
-            // Add click listener to the card itself to pause/unpause
+            
+            // Add click listener to the card itself
             flipCard.addEventListener('click', () => {
-                if (autoFlipInterval) {
-                    clearInterval(autoFlipInterval);
-                } else {
-                    startAutoFlip();
-                }
+                togglePlayPause();
             });
-
+            
+            // Previous/Next buttons
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    pauseAutoFlip();
+                    flipToFace(currentFace - 1);
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    pauseAutoFlip();
+                    flipToFace(currentFace + 1);
+                });
+            }
+            
+            // Play/Pause button
+            if (playPauseBtn) {
+                playPauseBtn.addEventListener('click', togglePlayPause);
+            }
+            
             // Initialize and start rotation
             startAutoFlip();
-            // --- END CUBE FLIP CAROUSEL LOGIC ---
+            // --- END ENHANCED CUBE FLIP CAROUSEL LOGIC ---
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        closeMobileMenu();
+                    }
+                });
+            });
+            
+            // FIXED: Add animation to stats on scroll - NO NaN+ ISSUE
+            const stats = document.querySelectorAll('.stat-number');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statElement = entry.target;
+                        const targetValue = parseFloat(statElement.getAttribute('data-value'));
+                        const originalText = statElement.textContent;
+                        const hasPercent = originalText.includes('%');
+                        
+                        // Skip if targetValue is not a valid number
+                        if (isNaN(targetValue)) {
+                            observer.unobserve(statElement);
+                            return;
+                        }
+
+                        let currentValue = 0;
+                        const increment = targetValue / 50;
+                        const timer = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= targetValue) {
+                                // Show the final value with correct formatting
+                                statElement.textContent = hasPercent ? targetValue + '%' : Math.round(targetValue) + '+';
+                                clearInterval(timer);
+                                observer.unobserve(statElement);
+                            } else {
+                                // Show intermediate value with correct formatting
+                                if (hasPercent) {
+                                    statElement.textContent = currentValue.toFixed(1) + '%';
+                                } else {
+                                    statElement.textContent = Math.floor(currentValue) + '+';
+                                }
+                            }
+                        }, 30);
+                    }
+                });
+            }, observerOptions);
+
+            stats.forEach(stat => observer.observe(stat));
+            
         });
+        
     </script>
 </body>
 </html>
-
-
-

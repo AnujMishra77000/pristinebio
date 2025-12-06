@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pristine Biopharma - Product Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Pristine Biopharma - Premium Chemical Products | APIs, Solvents & Cosmetic Ingredients</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- HIGH-TECH DARK MODE COLOR SCHEME --- */
@@ -25,509 +26,1295 @@
             margin: 0;
             padding: 0;
             color: #f3f4f6; /* Light gray text for high contrast */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-        /* --- MARKET SEGMENTS STYLES --- */
-        .market-segments-container {
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Enhanced Navigation with HIDE ON SCROLL functionality */
+        header {
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(52, 211, 153, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+
+        header.scrolled {
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        /* IMPROVED HERO SECTION WITHOUT OVERLAPPING */
+        .hero-section {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 6rem 0 4rem;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.7);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.95) 0%,
+                rgba(15, 23, 42, 0.85) 50%,
+                rgba(52, 211, 153, 0.2) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: rgba(52, 211, 153, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: 50px;
+            color: var(--color-accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0;
+            background: linear-gradient(135deg, 
+                var(--color-accent) 0%, 
+                #10b981 50%, 
+                #6ee7b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 4vw, 1.75rem);
+            font-weight: 400;
+            color: #e5e7eb;
+            margin: 0;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            line-height: 1.4;
+        }
+
+        .hero-description {
+            font-size: clamp(0.875rem, 3vw, 1.125rem);
+            color: #d1d5db;
+            max-width: 700px;
+            margin: 0;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        @media (min-width: 640px) {
+            .hero-actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        /* Premium Button */
+        .premium-btn {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(52, 211, 153, 0.4);
+        }
+
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .premium-btn:hover::before {
+            left: 100%;
+        }
+
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(52, 211, 153, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* WHITE PRODUCT CARDS WITH EMERALD TEXT - UPDATED TO MATCH HOMEPAGE */
+        .product-category-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            min-height: 250px;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(52, 211, 153, 0.25), 
+                        0 0 0 1px rgba(52, 211, 153, 0.3);
+            border-color: var(--color-accent);
+        }
+
+        .product-category-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .product-category-card:hover::after {
+            left: 100%;
+        }
+
+        .product-card-image {
+            height: 280px;
+            background: linear-gradient(135deg, 
+                rgba(52, 211, 153, 0.1) 0%,
+                rgba(16, 185, 129, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .product-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-accent), 
+                transparent);
+            z-index: 2;
+        }
+
+        .product-icon-container {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--color-accent), #10b981);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .product-category-card:hover .product-icon-container {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 20px 45px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Card content with emerald text */
+        .card-title {
+            color: var(--color-accent) !important;
+            font-weight: 700;
+        }
+
+        .card-description {
+            color: #4b5563 !important;
+        }
+
+        .card-feature {
+            color: #374151 !important;
+        }
+
+        /* Key Features - UPDATED TO WHITE BACKGROUND */
+        .feature-item {
+            background-color: #ffffff; /* WHITE BACKGROUND */
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(52, 211, 153, 0.1), 
+                transparent);
+            transition: left 0.7s ease;
+        }
+
+        .feature-item:hover::before {
+            left: 100%;
+        }
+
+        .feature-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(52, 211, 153, 0.2);
+        }
+
+        /* White card text colors */
+        .feature-item h4 {
+            color: var(--color-accent) !important;
+        }
+        
+        .feature-item p {
+            color: #4b5563 !important;
+        }
+
+        /* Stats Section */
+        .stat-card {
+            background: linear-gradient(135deg, 
+                rgba(16, 185, 129, 0.1), 
+                rgba(16, 185, 129, 0.05));
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, 
+                rgba(16, 185, 129, 0.1) 0%, 
+                transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Product Showcase Grid */
+        .showcase-grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .showcase-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .showcase-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Enhanced Footer */
+        .footer-link {
+            position: relative;
+            padding-left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            padding-left: 1rem;
+            color: var(--color-accent);
+        }
+
+        .footer-link::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link:hover::before {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 5px;
+        }
+
+        /* Touch-friendly elements */
+        @media (hover: none) {
+            .product-category-card:hover {
+                transform: none;
+            }
+            
+            .premium-btn:hover {
+                transform: none;
+            }
+            
+            .feature-item:hover {
+                transform: none;
+            }
+        }
+
+        /* RESPONSIVE ADJUSTMENTS */
+        @media (max-width: 768px) {
+            /* Hero section adjustments */
+            .hero-section {
+                padding: 4rem 0 2rem;
+                min-height: auto;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(1rem, 4vw, 1.5rem);
+            }
+            
+            .hero-description {
+                font-size: clamp(0.875rem, 3vw, 1rem);
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .premium-btn, .secondary-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            /* Product cards adjustments */
+            .product-card-image {
+                height: 200px;
+            }
+            
+            .product-icon-container {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .product-category-card .p-8 {
+                padding: 1.5rem;
+            }
+            
+            /* Stats adjustments */
+            .stat-card {
+                padding: 1.5rem;
+            }
+            
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            /* Section spacing */
+            section {
+                padding: 3rem 1rem !important;
+            }
+            
+            .section-title {
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small devices */
+            .hero-section {
+                padding: 3rem 0 1.5rem;
+            }
+            
+            .hero-content {
+                gap: 1rem;
+            }
+            
+            .hero-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+            
+            .product-card-image {
+                height: 180px;
+            }
+            
+            .product-icon-container {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+            
+            .feature-item {
+                padding: 1.5rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .stat-card .text-4xl {
+                font-size: 2rem !important;
+            }
+            
+            .showcase-item {
+                padding: 1.5rem;
+            }
+            
+            /* Grid adjustments for very small screens */
+            .grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Tablet specific adjustments */
+            .hero-section {
+                padding: 5rem 0 3rem;
+            }
+            
+            .hero-content {
+                padding: 1.5rem;
+            }
+            
+            .product-card-image {
+                height: 240px;
+            }
+            
+            .product-category-card .p-8 {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Container improvements */
+        .container-custom {
+            width: 100%;
+            padding-right: 1rem;
+            padding-left: 1rem;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        @media (min-width: 640px) {
+            .container-custom {
+                max-width: 640px;
+            }
         }
 
         @media (min-width: 768px) {
-            .market-segments-container {
-                grid-template-columns: repeat(2, 1fr);
+            .container-custom {
+                max-width: 768px;
             }
         }
 
         @media (min-width: 1024px) {
-            .market-segments-container {
-                grid-template-columns: repeat(3, 1fr);
+            .container-custom {
+                max-width: 1024px;
             }
         }
-        
-        /* Card Base Style: Dark background, subtle lift */
-        .glowing-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            background-color: var(--color-primary); 
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); 
-            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.4s ease-out;
-            cursor: pointer;
-            min-height: 250px;
-            border: 1px solid #374151; 
-        }
 
-        .glowing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(52, 211, 153, 0.3); 
-            border-color: var(--color-accent);
-        }
-
-        /* Card Content Style */
-        .segment-card-content {
-            padding: 1.5rem;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-        
-        .segment-card-content h3 {
-            color: var(--color-accent); 
-        }
-        
-        .segment-card-content p {
-            color: #d1d5db; 
-        }
-
-        /* --- ADVANCED CAROUSEL STYLES --- */
-        .carousel-track {
-            overflow-x: scroll;
-            display: flex;
-            gap: 1.5rem; /* Space between cards */
-            scroll-behavior: smooth;
-            padding: 1rem 0;
-        }
-        .nav-content > * {
-            opacity: 1; /* Default visible state */
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .hide-on-scroll.nav-content > * {
-            opacity: 0;
-            pointer-events: none; /* Prevents interaction while hidden */
-        }
-
-        .product-card {
-            min-width: 320px; /* Fixed width for card */
-            flex-shrink: 0;
-            border-radius: 1rem;
-            background-color: var(--color-primary);
-            border: 1px solid #374151;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
-        }
-        
-        .product-card:hover {
-            border-color: var(--color-accent);
-            transform: translateY(-4px);
-        }
-
-        /* --- HERO TEXT ANIMATION STYLES --- */
-        .hero-text-anim {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-text-active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .delay-200 {
-            transition-delay: 0.2s;
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #34d399, #6ee7b7, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shine 5s linear infinite;
-        }
-
-        @keyframes shine {
-            to {
-                background-position: 200% center;
+        @media (min-width: 1280px) {
+            .container-custom {
+                max-width: 1280px;
             }
-        }
-        
-        /* --- SCROLL HIDE STYLE (FIXED & IMPROVED) --- */
-        header {
-            /* 1. Add overall transition to the header */
-            transition: transform 0.4s ease-in-out, background-color 0.3s, box-shadow 0.3s;
-        }
-        
-        /* 2. Style when scrolled: Dark background, shadow */
-        .scrolled-header {
-            background-color: var(--color-secondary); /* Deep Slate */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            background-color: var(--color-secondary)/80; /* Semi-transparent when scrolled */
-        }
-
-        /* 3. Hide class: Moves the entire header off-screen */
-        .hide-on-scroll {
-            transform: translateY(-100%); 
-            pointer-events: none;
-        }
-        
-        .nav-content > * {
-            opacity: 1; 
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        /* Ensure content children fade out if the container is hidden */
-        .hide-on-scroll .nav-content > * {
-            opacity: 0;
         }
     </style>
-    
 </head>
 
 <body>
-    <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-24 bg-transparent"> 
-        <div class="max-w-6xl mx-auto h-full p-4">
-            <div id="nav-content-wrapper" class="flex justify-between items-center h-full nav-content"> 
-                <a href="index.html" class="flex items-center space-x-3">
-                    <img src="images/PB.png" alt="Logo" class="h-28 w-auto filter drop-shadow-lg -mt-2"> 
+    <!-- Premium Navigation with Hide on Scroll -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-24 transition-all duration-500">
+        <div class="container-custom h-full px-4 md:px-8">
+            <div class="flex justify-between items-center h-full">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <img src="images/PB.png" alt="Pristine Biopharma" class="h-28 md:h-28 w-auto transition-transform group-hover:scale-105">
                 </a>
-                
-                <div class="md:hidden">
-                    <button id="menu-btn" class="text-white focus:outline-none">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
 
-                <nav class="hidden md:flex space-x-8 text-base tracking-wide font-semibold">
-                    <a href="index.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Home</a>
-                    <a href="about.html" class="text-white hover:text-emerald-400 transition-colors duration-300">About</a>
-                    <a href="products.html" class="text-emerald-400 border-b-2 border-emerald-400">Products</a>
-                    <a href="contact.html" class="text-white hover:text-emerald-400 transition-colors duration-300">Contact</a>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-10">
+                    <a href="index.html" class="text-white hover:text-emerald-400 transition-colors duration-300 font-medium">Home</a>
+                    <a href="about.html" class="text-white hover:text-emerald-400 transition-colors duration-300 font-medium">About</a>
+                    <a href="products.html" class="text-emerald-400 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-emerald-400">Products</a>
+                    <a href="contact.html" class="text-white hover:text-emerald-400 transition-colors duration-300 font-medium">Contact</a>
+                    <a href="contact.html" class="premium-btn text-sm">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        Get Quote
+                    </a>
                 </nav>
-            </div>
-            </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90 shadow-xl">
-            <a href="index.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Home</a>
-            <a href="about.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">About</a>
-            <a href="products.html" class="block py-3 px-4 text-base text-emerald-400 hover:bg-emerald-500/10">Products</a>
-            <a href="contact.html" class="block py-3 px-4 text-base text-white hover:bg-emerald-500/10 hover:text-emerald-400">Contact</a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-80 md:hidden">
+            <div class="p-6">
+                <button id="close-menu-btn" class="absolute top-6 right-6 text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                
+                <div class="mt-16 space-y-6">
+                    <a href="index.html" class="block text-lg text-white hover:text-emerald-400 transition-colors">Home</a>
+                    <a href="about.html" class="block text-lg text-white hover:text-emerald-400 transition-colors">About</a>
+                    <a href="products.html" class="block text-lg text-emerald-400 font-semibold">Products</a>
+                    <a href="contact.html" class="block text-lg text-white hover:text-emerald-400 transition-colors">Contact</a>
+                    <a href="contact.html" class="premium-btn block text-center mt-8">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        Request Quote
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
-    <div class="h-24"></div> 
 
-    <section class="relative h-[85vh] flex items-center justify-center text-center border-b border-emerald-400/20 overflow-hidden">
-    
-        <video id="bg-video-player" autoplay muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-            <source src="image2/pharma.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+    <!-- Spacer for fixed header -->
+    <div class="h-24"></div>
+
+    <!-- IMPROVED HERO SECTION WITHOUT OVERLAPPING -->
+    <section class="hero-section">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="images/hpg.mp4" type="video/mp4">
         </video>
-        
-        <div class="absolute top-0 left-0 w-full h-full bg-gray-900/60 z-10" 
-             style="box-shadow: inset 0 0 100px rgba(52, 211, 153, 0.2); backdrop-filter: blur(2px);">
-        </div>
-    
-        <div class="relative z-20 max-w-5xl mx-auto px-6">
-    
-            <h1 id="hero-title" class="text-5xl md:text-7xl font-black mb-6 text-white hero-text-anim hero-text-active">
-                Pharmaceutical <br> <span class="text-gradient">Excellence</span>
-            </h1>
-            
-            <p id="hero-subtitle" class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto hero-text-anim hero-text-active delay-200 font-light">
-                Certified APIs and advanced intermediates for global healthcare.
-            </p>
-    
-        </div>
-    </section>
+        <div class="hero-overlay"></div>
 
-    <section class="py-20 md:py-28 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4 text-white" data-aos="fade-up">
-                Core Sectors of Focus
-            </h2>
-            <p class="text-lg text-center text-gray-400 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="150">
-                Explore our specialized chemical ranges tailored for specific industry needs.
-            </p>
-    
-            <div class="market-segments-container">
-    
-                <div class="glowing-card" data-aos="fade-up" data-aos-delay="100">
-                    <a href="pharma.html" class="segment-link">
-                        <div class="segment-card-content">
-                            <svg class="w-10 h-10 text-emerald-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c0 2.897 1.18 5.617 3.04 7.618A12.001 12.001 0 0012 21.056c2.897 0 5.617-1.18 7.618-3.04A12.001 12.001 0 0021.056 12a11.955 11.955 0 00-3.04-8.618z"></path></svg>
-                            <h3 class="text-2xl font-bold mb-2">Pharmaceutical</h3>
-                            <p>
-                                High-purity **Active Pharmaceutical Ingredients (APIs)** and building blocks meeting cGMP standards.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-    
-                <div class="glowing-card" data-aos="fade-up" data-aos-delay="200">
-                    <a href="lab.html" class="segment-link">
-                        <div class="segment-card-content">
-                            <svg class="w-10 h-10 text-emerald-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-7-7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <h3 class="text-2xl font-bold mb-2">Lab Reagents & Solvents</h3>
-                            <p>
-                                Certified reagents and powerful solvents for manufacturing, synthesis, and high-tech industrial use.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="glowing-card" data-aos="fade-up" data-aos-delay="300">
-                    <a href="cosmetic.html" class="segment-link">
-                        <div class="segment-card-content">
-                            <svg class="w-10 h-10 text-emerald-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 16h.01"></path></svg>
-                            <h3 class="text-2xl font-bold mb-2">Cosmetics & Neutraceuticals</h3>
-                            <p>
-                                Essential oils, chemical bases, and functional ingredients for premium skin care and health supplements.
-                            </p>
-                        </div>
-                    </a>
-                </div>
+        <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-down">
+                <i class="fas fa-certificate mr-2"></i> ISO Certified Excellence
             </div>
 
-            <div class="text-center mt-16" data-aos="zoom-in">
-                <a href="#product-showcase" class="bg-emerald-500 text-gray-900 px-10 py-4 rounded-full font-extrabold text-lg hover:bg-emerald-400 shadow-2xl shadow-emerald-500/30 transition-all duration-300 transform hover:scale-105">
-                    Jump to Product Showcase
+            <h1 class="hero-title" data-aos="fade-up">
+                Premium Solutions
+            </h1>
+
+            <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                For Global Industries
+            </h2>
+
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
+                Discover our comprehensive range of high-purity Active Pharmaceutical Ingredients, 
+                certified industrial solvents, and premium cosmetic bases engineered for excellence.
+            </p>
+
+            <div class="hero-actions" data-aos="fade-up" data-aos-delay="600">
+                <a href="#product-categories" class="premium-btn">
+                    <i class="fas fa-boxes mr-2"></i>
+                    Explore Products
+                </a>
+                <a href="contact.html" class="secondary-btn">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    Schedule Consultation
                 </a>
             </div>
         </div>
     </section>
-    
-    <section id="product-showcase" class="py-20 md:py-28 px-4 bg-gray-900">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-extrabold text-center mb-4 text-white" data-aos="fade-up">
-                Dynamic Product Showcase
-            </h2>
-            <p class="text-lg text-center text-gray-400 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="150">
-                A rolling feed of our highest quality chemical products currently in demand.
-            </p>
 
-            <div class="relative overflow-hidden py-4">
-                <div id="carousel-track" class="carousel-track">
-                    </div>
+    <!-- Key Stats -->
+    <section class="py-16 md:py-24 px-4 md:px-8">
+        <div class="container-custom mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="stat-card text-center" data-aos="fade-up">
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-emerald-400">500+</div>
+                    <p class="text-gray-300 font-medium text-sm md:text-base">Chemical Products</p>
+                </div>
+                <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-emerald-400">99.9%</div>
+                    <p class="text-gray-300 font-medium text-sm md:text-base">Average Purity</p>
+                </div>
+                <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-emerald-400">50+</div>
+                    <p class="text-gray-300 font-medium text-sm md:text-base">Countries Served</p>
+                </div>
+                <div class="stat-card text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-emerald-400">24/7</div>
+                    <p class="text-gray-300 font-medium text-sm md:text-base">Technical Support</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-12 border-t border-gray-700">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-            
-            <div>
-                <h4 class="text-xl font-bold mb-4 text-emerald-400">Pristine Biopharma</h4>
-                <p class="text-sm text-gray-400">Trusted supplier of certified chemical products for global industries.</p>
-            </div>
-            
-            <div>
-                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="products.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Product Catalog</a></li>
-                    <li><a href="about.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Our Quality</a></li>
-                    <li><a href="contact.html" class="text-gray-400 hover:text-emerald-400 transition-colors">Support</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-semibold mb-4">Contact</h4>
-                <p class="text-sm text-gray-400">
-                    Unit 830 Lodha Signet, Lodha Premier<br>
-                    Email: sales@pristinebiopharma.com<br>
-                    Phone: (+91) 8691953900
+    <!-- Product Categories - WHITE CARDS -->
+    <section id="product-categories" class="py-20 md:py-32 px-4 md:px-8">
+        <div class="container-custom mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    <i class="fas fa-th-large mr-2"></i> OUR SPECIALTIES
+                </span>
+                <h2 class="section-title font-extrabold mb-6 text-white">
+                    Core Product <span class="text-emerald-400">Categories</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                    Explore our premium chemical solutions across three specialized domains, each backed by rigorous quality standards.
                 </p>
             </div>
 
-            <div class="md:col-span-1">
-                <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.013 4.85.074 3.024.148 4.073 1.198 4.22 4.22.061 1.266.074 1.646.074 4.85s-.013 3.584-.074 4.85c-.148 3.024-1.198 4.073-4.22 4.22-.061.012-.44.074-.85.074H8.15c-1.266 0-1.646-.013-4.85-.074-3.024-.148-4.073-1.198-4.22-4.22-.061-1.266-.074-1.646-.074-4.85s.013-3.584.074-4.85c.148-3.024 1.198-4.073 4.22-4.22.061-.012.44-.074.85-.074h7.7c.41 0 .79.062 1.2.074zM12 5.084c-3.87 0-7.005 3.135-7.005 7.004s3.135 7.004 7.005 7.004c3.87 0 7.005-3.135 7.005-7.004S15.87 5.084 12 5.084zM12 17.5c-3.048 0-5.5-2.452-5.5-5.5s2.452-5.5 5.5-5.5 5.5 2.452 5.5 5.5-2.452 5.5-5.5 5.5zM17.5 7.375c-.387 0-.704.317-.704.704s.317.704.704.704c.387 0 .704-.317.704-.704z"></path></svg>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <!-- Pharmaceutical Category -->
+                <div class="product-category-card" data-aos="fade-up" data-aos-delay="100">
+                    <a href="pharma.html" class="block h-full">
+                        <div class="product-card-image">
+                            <div class="product-icon-container">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-grow">
+                            <h3 class="card-title font-bold mb-4">Pharmaceutical Ingredients</h3>
+                            <p class="card-description mb-6">
+                                High-purity Active Pharmaceutical Ingredients (APIs) and advanced intermediates manufactured under strict cGMP guidelines for global healthcare solutions.
+                            </p>
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">cGMP Certified Production</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">>99.9% Purity Guarantee</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">Global Regulatory Compliance</span>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center text-emerald-600 font-semibold">
+                                Explore 150+ Products <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6.727c-.455.201-.94.336-1.446.401.524-.314.927-.812 1.116-1.411-.49.294-1.034.509-1.61.623-.464-.495-1.127-.805-1.85-.805-1.404 0-2.544 1.139-2.544 2.544 0 .199.022.392.064.577-2.113-.106-3.985-1.116-5.32-2.659-.22.378-.346.82-.346 1.288 0 .885.452 1.666 1.138 2.126-.421-.013-.815-.129-1.157-.319v.033c0 1.232.876 2.259 2.037 2.493-.213.058-.438.089-.668.089-.164 0-.323-.016-.479-.047.323 1.01 1.261 1.748 2.371 1.768-1.026.804-2.32 1.284-3.729 1.284-.242 0-.48-.014-.716-.042 1.328.85 2.905 1.35 4.6 1.35 5.52 0 8.535-4.576 8.535-8.535 0-.13-.003-.26-.008-.39.588-.424 1.097-.948 1.503-1.543z"></path></svg>
+                </div>
+
+                <!-- Lab Reagents & Solvents -->
+                <div class="product-category-card" data-aos="fade-up" data-aos-delay="200">
+                    <a href="lab.html" class="block h-full">
+                        <div class="product-card-image">
+                            <div class="product-icon-container">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-grow">
+                            <h3 class="card-title font-bold mb-4">Lab Reagents & Solvents</h3>
+                            <p class="card-description mb-6">
+                                Certified analytical reagents and ultra-dry solvents for pharmaceutical synthesis, manufacturing, and high-precision industrial applications.
+                            </p>
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">HPLC & Analytical Grade</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">Anhydrous & Ultra-Dry Forms</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">Full Traceability & CoA</span>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center text-emerald-600 font-semibold">
+                                Explore 80+ Products <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Cosmetics & Nutraceuticals -->
+                <div class="product-category-card" data-aos="fade-up" data-aos-delay="300">
+                    <a href="cosmetic.html" class="block h-full">
+                        <div class="product-card-image">
+                            <div class="product-icon-container">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-grow">
+                            <h3 class="card-title font-bold mb-4">Cosmetics & Nutraceuticals</h3>
+                            <p class="card-description mb-6">
+                                Premium essential oils, functional bases, and active ingredients for advanced skincare, personal care, and health supplement formulations.
+                            </p>
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">Natural & Synthetic Options</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">Cosmetic Grade Certified</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                    <span class="card-feature">Custom Formulations</span>
+                                </div>
+                            </div>
+                            <span class="inline-flex items-center text-emerald-600 font-semibold">
+                                Explore 120+ Products <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
                     </a>
                 </div>
             </div>
-
         </div>
-        <div class="text-center mt-8 border-t border-gray-700 pt-6">
-            <p class="text-sm tracking-wide text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+    </section>
+
+    <!-- Key Features - UPDATED WITH WHITE CARDS -->
+    <section class="py-20 md:py-32 px-4 md:px-8 bg-gradient-to-b from-gray-900/50 to-transparent">
+        <div class="container-custom mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    <i class="fas fa-star mr-2"></i> WHY CHOOSE US
+                </span>
+                <h2 class="section-title font-extrabold mb-6 text-white">
+                    Premium Quality <span class="text-emerald-400">Assurance</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                    Every product undergoes rigorous testing and validation to meet the highest international standards.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="feature-item text-center" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-certificate text-2xl text-emerald-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">cGMP Certified</h4>
+                    <p class="text-gray-700">
+                        Manufactured under strict Current Good Manufacturing Practices protocols.
+                    </p>
+                </div>
+
+                <div class="feature-item text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-microscope text-2xl text-emerald-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Advanced Analysis</h4>
+                    <p class="text-gray-700">
+                        HPLC, GC-MS, and NMR testing for >99.9% purity verification.
+                    </p>
+                </div>
+
+                <div class="feature-item text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-content-center mx-auto mb-6">
+                        <i class="fas fa-search text-2xl text-emerald-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Full Traceability</h4>
+                    <p class="text-gray-700">
+                        Complete batch documentation for regulatory compliance and audits.
+                    </p>
+                </div>
+
+                <div class="feature-item text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-award text-2xl text-emerald-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Global Certifications</h4>
+                    <p class="text-gray-700">
+                        ISO, WHO-GMP, and regulatory compliant production standards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="py-20 md:py-32 px-4 md:px-8">
+        <div class="container-custom mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 text-sm font-semibold mb-4">
+                    <i class="fas fa-gem mr-2"></i> FEATURED SOLUTIONS
+                </span>
+                <h2 class="section-title font-extrabold mb-6 text-white">
+                    Industry-Leading <span class="text-emerald-400">Products</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                    Discover our most sought-after chemical solutions trusted by leading manufacturers worldwide.
+                </p>
+            </div>
+
+            <div class="showcase-grid">
+                <div class="showcase-item" data-aos="fade-up">
+                    <div class="text-emerald-400 text-3xl mb-4">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Paracetamol API</h4>
+                    <p class="text-gray-400 mb-4">High-purity analgesic active ingredient with verified crystalline consistency.</p>
+                    <div class="flex items-center text-sm text-emerald-400">
+                        <i class="fas fa-percentage mr-2"></i>
+                        <span class="font-mono">99.9% Purity</span>
+                    </div>
+                </div>
+
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-emerald-400 text-3xl mb-4">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Acetonitrile HPLC</h4>
+                    <p class="text-gray-400 mb-4">Premium mobile phase solvent for complex chromatographic analysis.</p>
+                    <div class="flex items-center text-sm text-emerald-400">
+                        <i class="fas fa-percentage mr-2"></i>
+                        <span class="font-mono">99.95% Purity</span>
+                    </div>
+                </div>
+
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-emerald-400 text-3xl mb-4">
+                        <i class="fas fa-oil-can"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Essential Oils</h4>
+                    <p class="text-gray-400 mb-4">Natural and synthetic oils for cosmetic and therapeutic applications.</p>
+                    <div class="flex items-center text-sm text-emerald-400">
+                        <i class="fas fa-seedling mr-2"></i>
+                        <span>Natural & Synthetic</span>
+                    </div>
+                </div>
+
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-emerald-400 text-3xl mb-4">
+                        <i class="fas fa-vial-virus"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white">Reference Standards</h4>
+                    <p class="text-gray-400 mb-4">Certified standards for pharmaceutical quality control and validation.</p>
+                    <div class="flex items-center text-sm text-emerald-400">
+                        <i class="fas fa-certificate mr-2"></i>
+                        <span>USP/EP Certified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 md:py-32 px-4 md:px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-emerald-900/20">
+        <div class="container-custom mx-auto text-center" data-aos="zoom-in">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-white">
+                Ready to Elevate Your Supply Chain?
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Partner with us for premium chemical solutions backed by uncompromising quality and technical expertise.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="premium-btn">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    Request Custom Quote
+                </a>
+                <a href="tel:+918691953900" class="secondary-btn">
+                    <i class="fas fa-phone mr-2"></i>
+                    Call (+91) 8691953900
+                </a>
+            </div>
+            <p class="text-gray-400 text-sm mt-8">
+                <i class="fas fa-clock mr-2"></i>
+                24/7 Technical Support Available
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="container-custom mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="inline-block mb-6">
+                        <img src="images/PB.png" alt="Pristine Biopharma" class="h-16 md:h-20 w-auto">
+                    </a>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Global leader in high-grade Active Pharmaceutical Ingredients, Essential Oils, and certified Industrial Solvents.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 text-emerald-400">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="products.html" class="footer-link text-gray-400">Product Catalog</a></li>
+                        <li><a href="about.html" class="footer-link text-gray-400">Quality Assurance</a></li>
+                        <li><a href="contact.html" class="footer-link text-gray-400">Technical Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 text-emerald-400">Product Lines</h4>
+                    <ul class="space-y-3">
+                        <li><a href="pharma.html" class="footer-link text-gray-400">Pharmaceutical APIs</a></li>
+                        <li><a href="lab.html" class="footer-link text-gray-400">Lab Reagents & Solvents</a></li>
+                        <li><a href="cosmetic.html" class="footer-link text-gray-400">Cosmetic Ingredients</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 text-emerald-400">Contact Us</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-emerald-400"></i>
+                            <span class="text-gray-400">Unit 830 Lodha Signet, Lodha Premier</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-emerald-400"></i>
+                            <span class="text-gray-400">sales@pristinebiopharma.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-emerald-400"></i>
+                            <span class="text-gray-400">(+91) 8691953900</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500">© 2025 Pristine Biopharma. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-    
+
+    <!-- JavaScript -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
             AOS.init({
                 once: true,
                 duration: 800,
-                delay: 100,
+                offset: 100,
+                easing: 'ease-out-cubic',
             });
-    
-           // --- Element Declarations ---
-            const menuBtn = document.getElementById('menu-btn');
+
+            // --- NAVBAR HIDE ON SCROLL FUNCTIONALITY ---
+            const header = document.getElementById('main-header');
+            let lastScrollTop = 0;
+            const scrollThreshold = 100;
+
+            window.addEventListener('scroll', function() {
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Add scrolled class when scrolling down
+                if (currentScroll > scrollThreshold) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Hide/show header based on scroll direction
+                if (currentScroll > scrollThreshold) {
+                    if (currentScroll > lastScrollTop) {
+                        // Scrolling down - hide header
+                        header.classList.add('hidden');
+                    } else {
+                        // Scrolling up - show header
+                        header.classList.remove('hidden');
+                    }
+                } else {
+                    // At top - always show
+                    header.classList.remove('hidden');
+                }
+                
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            });
+
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
-            // ⭐ CORRECT: Target the outer <header> element
-            const mainHeader = document.querySelector('header'); 
-            
-            if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add touch-friendly hover effects for mobile
+            if ('ontouchstart' in window) {
+                document.querySelectorAll('.product-category-card, .feature-item, .showcase-item').forEach(card => {
+                    card.addEventListener('touchstart', function() {
+                        this.classList.add('active');
+                    });
+                    
+                    card.addEventListener('touchend', function() {
+                        setTimeout(() => this.classList.remove('active'), 150);
+                    });
                 });
             }
-            
-            // --- Scroll Direction Hide/Show Navbar Logic (FIXED) ---
-            let lastScrollTop = 0; 
-            const navWrapper = document.getElementById('nav-content-wrapper');
-            const HIDE_CLASS = 'hide-on-scroll'; 
-        
-            const SCROLL_THRESHOLD = 100; 
-    
-            if (navWrapper) { 
-                window.addEventListener('scroll', function() {
-                    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    
-                    if (currentScroll > SCROLL_THRESHOLD) {
-                        // Add solid background once scrolled past the threshold
-                        
 
-                        if (currentScroll > lastScrollTop) {
-                            // Scrolling DOWN: Hide the entire header
-                            navWrapper.classList.add(HIDE_CLASS);
-                        } else {
-                            // Scrolling UP: Show the entire header
-                            navWrapper.classList.remove(HIDE_CLASS);
-                        }
-                    } else {
-                        // Near the top, always show header and make it transparent
-                        navWrapper.classList.remove(HIDE_CLASS);
-                        navWrapper.classList.remove(HIDE_CLASS);
+            // Optimize video loading for mobile
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo) {
+                if (window.innerWidth <= 768) {
+                    heroVideo.setAttribute('playsinline', '');
+                    heroVideo.setAttribute('muted', '');
+                    heroVideo.setAttribute('autoplay', '');
+                    heroVideo.setAttribute('loop', '');
+                }
+            }
+
+            // Performance optimization - lazy load images
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('data-src');
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
                     }
-                    
-                    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-                }, false);
-            }
-           // --- END SCROLL HIDE LOGIC ---
-    
-           // --- UPDATED VIDEO & TEXT SYNC LOGIC (EXISTING) ---
-            const videoPlayer = document.getElementById('bg-video-player');
-            const heroTitle = document.getElementById('hero-title');
-            const heroSubtitle = document.getElementById('hero-subtitle');
-    
-            const heroData = [
-                {
-                    video: "image2/pharma.mp4",
-                    title: "Pharmaceutical <br> <span class='text-gradient'>Excellence</span>",
-                    subtitle: "Certified APIs and advanced intermediates for global healthcare."
-                },
-                {
-                    video: "image2/solv.mp4",
-                    title: "Pure Industrial <br> <span class='text-gradient'>Precision</span>",
-                    subtitle: "Ultra-dry solvents and reagents for critical chemical synthesis."
-                },
-                {
-                    video: "image2/cosm.mp4",
-                    title: "Future of <br> <span class='text-gradient'>Cosmetics</span>",
-                    subtitle: "Premium functional bases and ingredients for personal care."
-                }
-            ];
-    
-            let currentIndex = 0;
-    
-            if (videoPlayer) {
-                function playNextContent() {
-                    currentIndex = (currentIndex + 1) % heroData.length;
-                    const nextData = heroData[currentIndex];
-    
-                    videoPlayer.style.opacity = '0.5';
-                    
-                    setTimeout(() => {
-                        let sourceElement = videoPlayer.querySelector('source');
-                        if (sourceElement) sourceElement.src = nextData.video;
-                        else videoPlayer.src = nextData.video;
-                        
-                        videoPlayer.load();
-                        videoPlayer.play();
-                        videoPlayer.style.opacity = '1';
-                    }, 200);
-    
-                    heroTitle.classList.remove('hero-text-active');
-                    heroSubtitle.classList.remove('hero-text-active');
-    
-                    setTimeout(() => {
-                        heroTitle.innerHTML = nextData.title;
-                        heroSubtitle.textContent = nextData.subtitle;
-                        void heroTitle.offsetWidth; 
-                        heroTitle.classList.add('hero-text-active');
-                        heroSubtitle.classList.add('hero-text-active');
-                    }, 600); 
-                }
-    
-                videoPlayer.addEventListener('ended', playNextContent);
-            }
-            // --- END VIDEO LOGIC ---
-    
-    
-            // --- Dynamic Product Carousel Logic (EXISTING) ---
-            const products = [
-                { name: "Sertraline API", category: "Pharmaceutical", description: "High-purity SSRI active ingredient for neurological applications.", purity: "99.9%" },
-                { name: "Ethanol (Anhydrous)", category: "Industrial Solvent", description: "Ultra-dry, certified solvent for sensitive chemical synthesis and extraction.", purity: "99.99%" },
-                { name: "Hyaluronic Acid (Low MW)", category: "Cosmetics", description: "Low molecular weight sodium hyaluronate for deep skin penetration.", purity: "99.5%" },
-                { name: "Ibuprofen Impurity D", category: "Reference Standard", description: "Certified standard for quantification of Ibuprofen manufacturing byproduct.", purity: "99.8%" },
-                { name: "Menthol Crystals", category: "Neutraceuticals", description: "Natural-grade menthol for cooling agents and flavorings.", purity: "99.7%" },
-                { name: "Acetonitrile (HPLC Grade)", category: "Lab Reagent", description: "Premium mobile phase solvent for complex chromatographic analysis.", purity: "99.95%" },
-                { name: "Paracetamol API", category: "Pharmaceutical", description: "Standard analgesic API with verified crystalline consistency.", purity: "99.9%" },
-                { name: "Sodium Lauryl Sulfate (SLS)", category: "Cosmetics Base", description: "High-foaming anionic surfactant for cleaning products.", purity: "99.0%" },
-                { name: "Sertraline API", category: "Pharmaceutical", description: "High-purity SSRI active ingredient for neurological applications.", purity: "99.9%" },
-                { name: "Ethanol (Anhydrous)", category: "Industrial Solvent", description: "Ultra-dry, certified solvent for sensitive chemical synthesis and extraction.", purity: "99.99%" },
-            ];
-    
-            const carouselTrack = document.getElementById('carousel-track');
-            const cardWidth = 320; 
-            const gap = 24; 
-            const scrollDistance = cardWidth + gap;
-            const scrollInterval = 4000;
-    
-            function createCard(product) {
-                const card = document.createElement('div');
-                card.classList.add('product-card', 'p-6', 'space-y-3');
-                card.innerHTML = `
-                    <p class="text-sm font-semibold text-emerald-400">${product.category}</p>
-                    <h4 class="text-xl font-extrabold text-white">${product.name}</h4>
-                    <p class="text-gray-400 text-sm">${product.description}</p>
-                    <div class="pt-2 text-xs font-mono text-gray-500">Purity: <span class="text-emerald-400">${product.purity}</span></div>
-                `;
-                return card;
-            }
-    
-            products.forEach(product => {
-                carouselTrack.appendChild(createCard(product));
+                });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.1
             });
-    
-            let scrollTimer;
-    
-            function startContinuousScroll() {
-                scrollTimer = setInterval(() => {
-                    const uniqueContentLength = products.length / 2;
-                    const endOfUniqueScroll = uniqueContentLength * scrollDistance; 
-                    
-                    carouselTrack.scrollBy({
-                        left: scrollDistance,
-                        behavior: 'smooth'
-                    });
-    
-                    setTimeout(() => {
-                        if (carouselTrack.scrollLeft >= endOfUniqueScroll) {
-                            carouselTrack.scrollLeft = 0;
-                        }
-                    }, 700);
-    
-                }, scrollInterval);
+
+            images.forEach(img => imageObserver.observe(img));
+
+            // Add loading state to buttons
+            document.querySelectorAll('a.premium-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                });
+            });
+
+            // Prevent content overlap by checking viewport
+            function adjustContentSpacing() {
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent && window.innerHeight < 600) {
+                    heroContent.style.gap = '0.5rem';
+                }
             }
-    
-            startContinuousScroll();
             
-            carouselTrack.addEventListener('mouseover', () => clearInterval(scrollTimer));
-            carouselTrack.addEventListener('mouseout', startContinuousScroll);
-    
+            // Initial check
+            adjustContentSpacing();
+            
+            // Check on resize
+            window.addEventListener('resize', adjustContentSpacing);
         });
     </script>
-
-   
 </body>
 </html>
